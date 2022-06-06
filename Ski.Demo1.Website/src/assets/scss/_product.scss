@@ -1,0 +1,112 @@
+.card{
+  &:hover,:focus{
+    .card-img-layer{
+      opacity: 1;
+    } 
+    .img-card{
+      transform: scale(1.4);
+    }
+  } 
+}
+.card-img-layer{
+  top:0;
+  bottom:0;
+  right:0;
+  left:0;
+  position: absolute;
+  opacity: 0;
+  background-color:lighten($warning-transparent-lighter,20%);
+  transition: 0.5s;
+  text-shadow: 1px 1px 1px rgba(0,0,0, 0.7);
+  color:white;
+}
+.card-img-wrapper{
+  overflow: hidden;
+  position: relative;
+  .img-card{
+    height: 250px;
+  }
+}
+.card-gray-text{
+  color:#a2a2a2;
+}
+.detail-img{
+  min-height: 300px;
+  max-height: 360px;
+  width:100%;
+  height: auto;
+}
+.detail-display-img{
+  height: 300px;
+  object-fit: cover;
+  width: 100%;
+  @include media-breakpoint-up(md){
+    height: 500px;
+  }
+}
+.detail-display-imgitem{
+  width:100%;
+  height:80px;
+  object-fit: cover;
+  padding-right:6px;
+}
+.title-line{
+  width:80%;
+  height: 4px;
+  background-color: $primary;
+}
+/*隱藏number箭頭*/
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  appearance: none;
+  margin: 0;
+}
+/* Firefox */
+input[type="number"] {
+  -moz-appearance: textfield;
+}
+/*以一般文字顯示pre標籤*/
+pre {
+  white-space: pre-wrap;
+}
+.detail-input-number{
+  width: calc( 100% - 88px);
+  @include media-breakpoint-up(md){
+    width:initial;
+  }
+}
+.line-info{
+  width:180px;
+  height: 4px;
+  background-color: $primary;
+}
+.swiper-item{
+  max-width: 80px;
+  max-height: 100%;
+  margin-left: 0 !important;
+  margin-right: 0 !important;
+  .swiper-slide{
+    height: 80px;
+    width: 80px !important;
+  }
+}
+.swiper-detail{
+  margin-left: 0 !important;
+  margin-right: 0 !important;
+}
+.detail-btn-group{
+  .detail-btn{
+    width:49%;
+    margin-right:2%;
+    @include media-breakpoint-up(md){
+      width:initial;
+    }
+    &:last-child{
+      margin-right: 0;
+    }
+  }
+}
+.detail-info-box{
+  border: 9px double $primary;
+}

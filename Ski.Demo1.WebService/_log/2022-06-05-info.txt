@@ -1,0 +1,11 @@
+02:31:22(0); 開始啟動ASP.NET Core應用程式
+02:32:54(0); 開始啟動ASP.NET Core應用程式
+02:33:57(0); 開始啟動Ski.ElectronicCommerce應用程式
+02:33:58(0); 執行中
+02:34:58(0); 開始啟動Ski.ElectronicCommerce應用程式
+02:34:58(0); 執行中
+02:35:41(0); 開始啟動Ski.ElectronicCommerce應用程式
+02:35:41(0); 執行中
+02:36:29(0); 開始啟動Ski.ElectronicCommerce應用程式
+02:36:29(0); finally
+02:37:09(0); 開始啟動Ski.ElectronicCommerce應用程式
