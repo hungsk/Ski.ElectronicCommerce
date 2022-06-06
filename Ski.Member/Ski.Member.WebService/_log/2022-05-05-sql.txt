@@ -1,0 +1,134 @@
+11:37:41(0);  Select Top 1 * From member Where  me_pid = @me_pid (A120600712)
+11:42:42(0);  Select Top 1 * From member Where  me_pid = @me_pid (A120600712)
+17:05:18(0);  Select Top 1 * From member Where  me_pid = @me_pid (F125003281)
+17:05:18(0); insert into OTPLog ( me_id,  me_mobile,  BGNDT,  ENDDT,  otp,  sIP,  Dcreate,  PEstatus,  sType,  ReCount )  values( @me_id,  @me_mobile,  DATEADD (minute, -2 , getdate()),  DATEADD (minute,  5 , getdate()),  @otp,  @sIP,  {fn now()},  'Y',  @sType,  '0' )(F125003281,0920716281,3608898,127.0.0.1,5)
+17:05:18(0);  insert into qryLog ( uid,  utype,  qrySql,  qryinfo,  sqryip ) values(  @uid,  @utype,  @qrySql,  @qryinfo,  @sqryip )(SendSmsAndEmail,R,<html>
+<header>
+</header>
+<body>
+0920716281|0|H14A27A3|Success<br>
+</body>
+</html>
+,http://imsp.emome.net:8008/imsp/sms/servlet/SubmitSM?account=10267&password=10267&to_addr=0920716281&msg_type=0&msg=%bf%cb%b7R%aa%ba%ab%c8%a4%e1%b1z%a6n%2c%bd%d0%a6b5%a4%c0%c4%c1%a4%ba%bf%e9%a4J%c5%e7%c3%d2%b1K%bdX%a1y3608898%a1z%a5H%b6i%a6%e6%b7%7c%ad%fb%b5n%a4J%bb%7b%c3%d2%a1C%b7s%a5%fa%b2%a3%c0I%b7q%a4W,127.0.0.1)
+17:05:18(0); Update OTPLog Set  RetCode = @RetCode,  RetStatus = @RetStatus  Where 1=1  And me_id = @me_id  And me_mobile = @me_mobile  And otp = @otp  And pkey = (Select Max(pkey) From OTPLog Where  1=1 And  me_id = @me_id And me_mobile = @me_mobile And otp = @otp ) (H14A27A3,Success,F125003281,0920716281,3608898)
+17:05:41(0);  Select Top 1 * From member Where  me_pid = @me_pid (F125003281)
+17:05:41(0); insert into OTPLog ( me_id,  me_mobile,  BGNDT,  ENDDT,  otp,  sIP,  Dcreate,  PEstatus,  sType,  ReCount )  values( @me_id,  @me_mobile,  DATEADD (minute, -2 , getdate()),  DATEADD (minute,  5 , getdate()),  @otp,  @sIP,  {fn now()},  'Y',  @sType,  '0' )(F125003281,0920716281,4515869,127.0.0.1,5)
+17:05:41(0);  insert into qryLog ( uid,  utype,  qrySql,  qryinfo,  sqryip ) values(  @uid,  @utype,  @qrySql,  @qryinfo,  @sqryip )(SendSmsAndEmail,R,<html>
+<header>
+</header>
+<body>
+0920716281|0|H14A27E4|Success<br>
+</body>
+</html>
+,http://imsp.emome.net:8008/imsp/sms/servlet/SubmitSM?account=10267&password=10267&to_addr=0920716281&msg_type=0&msg=%bf%cb%b7R%aa%ba%ab%c8%a4%e1%b1z%a6n%2c%bd%d0%a6b5%a4%c0%c4%c1%a4%ba%bf%e9%a4J%c5%e7%c3%d2%b1K%bdX%a1y4515869%a1z%a5H%b6i%a6%e6%b7%7c%ad%fb%b5n%a4J%bb%7b%c3%d2%a1C%b7s%a5%fa%b2%a3%c0I%b7q%a4W,127.0.0.1)
+17:05:41(0); Update OTPLog Set  RetCode = @RetCode,  RetStatus = @RetStatus  Where 1=1  And me_id = @me_id  And me_mobile = @me_mobile  And otp = @otp  And pkey = (Select Max(pkey) From OTPLog Where  1=1 And  me_id = @me_id And me_mobile = @me_mobile And otp = @otp ) (H14A27E4,Success,F125003281,0920716281,4515869)
+17:07:01(0);  Select Top 1 * From member Where  me_pid = @me_pid (F125003281)
+17:07:01(0); insert into OTPLog ( me_id,  me_mobile,  BGNDT,  ENDDT,  otp,  sIP,  Dcreate,  PEstatus,  sType,  ReCount )  values( @me_id,  @me_mobile,  DATEADD (minute, -2 , getdate()),  DATEADD (minute,  5 , getdate()),  @otp,  @sIP,  {fn now()},  'Y',  @sType,  '0' )(F125003281,0920716281,2773116,127.0.0.1,5)
+17:07:01(0);  insert into qryLog ( uid,  utype,  qrySql,  qryinfo,  sqryip ) values(  @uid,  @utype,  @qrySql,  @qryinfo,  @sqryip )(SendSmsAndEmail,R,<html>
+<header>
+</header>
+<body>
+0920716281|0|H14A28C2|Success<br>
+</body>
+</html>
+,http://imsp.emome.net:8008/imsp/sms/servlet/SubmitSM?account=10267&password=10267&to_addr=0920716281&msg_type=0&msg=%bf%cb%b7R%aa%ba%ab%c8%a4%e1%b1z%a6n%2c%bd%d0%a6b5%a4%c0%c4%c1%a4%ba%bf%e9%a4J%c5%e7%c3%d2%b1K%bdX%a1y2773116%a1z%a5H%b6i%a6%e6%b7%7c%ad%fb%b5n%a4J%bb%7b%c3%d2%a1C%b7s%a5%fa%b2%a3%c0I%b7q%a4W,127.0.0.1)
+17:07:01(0); Update OTPLog Set  RetCode = @RetCode,  RetStatus = @RetStatus  Where 1=1  And me_id = @me_id  And me_mobile = @me_mobile  And otp = @otp  And pkey = (Select Max(pkey) From OTPLog Where  1=1 And  me_id = @me_id And me_mobile = @me_mobile And otp = @otp ) (H14A28C2,Success,F125003281,0920716281,2773116)
+17:07:14(0);  Select Top 1 * From member Where  me_pid = @me_pid (F125003281)
+17:07:14(0); insert into OTPLog ( me_id,  me_mobile,  BGNDT,  ENDDT,  otp,  sIP,  Dcreate,  PEstatus,  sType,  ReCount )  values( @me_id,  @me_mobile,  DATEADD (minute, -2 , getdate()),  DATEADD (minute,  5 , getdate()),  @otp,  @sIP,  {fn now()},  'Y',  @sType,  '0' )(F125003281,0920716281,5485059,127.0.0.1,5)
+17:07:14(0);  insert into qryLog ( uid,  utype,  qrySql,  qryinfo,  sqryip ) values(  @uid,  @utype,  @qrySql,  @qryinfo,  @sqryip )(SendSmsAndEmail,R,<html>
+<header>
+</header>
+<body>
+0920716281|0|H14A28DE|Success<br>
+</body>
+</html>
+,http://imsp.emome.net:8008/imsp/sms/servlet/SubmitSM?account=10267&password=10267&to_addr=0920716281&msg_type=0&msg=%bf%cb%b7R%aa%ba%ab%c8%a4%e1%b1z%a6n%2c%bd%d0%a6b5%a4%c0%c4%c1%a4%ba%bf%e9%a4J%c5%e7%c3%d2%b1K%bdX%a1y5485059%a1z%a5H%b6i%a6%e6%b7%7c%ad%fb%b5n%a4J%bb%7b%c3%d2%a1C%b7s%a5%fa%b2%a3%c0I%b7q%a4W,127.0.0.1)
+17:07:14(0); Update OTPLog Set  RetCode = @RetCode,  RetStatus = @RetStatus  Where 1=1  And me_id = @me_id  And me_mobile = @me_mobile  And otp = @otp  And pkey = (Select Max(pkey) From OTPLog Where  1=1 And  me_id = @me_id And me_mobile = @me_mobile And otp = @otp ) (H14A28DE,Success,F125003281,0920716281,5485059)
+17:08:04(0);  Select Top 1 * From member Where  me_pid = @me_pid (F125003281)
+17:08:04(0); insert into OTPLog ( me_id,  me_mobile,  BGNDT,  ENDDT,  otp,  sIP,  Dcreate,  PEstatus,  sType,  ReCount )  values( @me_id,  @me_mobile,  DATEADD (minute, -2 , getdate()),  DATEADD (minute,  5 , getdate()),  @otp,  @sIP,  {fn now()},  'Y',  @sType,  '0' )(F125003281,0920716281,0316381,127.0.0.1,5)
+17:08:04(0);  insert into qryLog ( uid,  utype,  qrySql,  qryinfo,  sqryip ) values(  @uid,  @utype,  @qrySql,  @qryinfo,  @sqryip )(SendSmsAndEmail,R,<html>
+<header>
+</header>
+<body>
+0920716281|0|H14A2966|Success<br>
+</body>
+</html>
+,http://imsp.emome.net:8008/imsp/sms/servlet/SubmitSM?account=10267&password=10267&to_addr=0920716281&msg_type=0&msg=%bf%cb%b7R%aa%ba%ab%c8%a4%e1%b1z%a6n%2c%bd%d0%a6b5%a4%c0%c4%c1%a4%ba%bf%e9%a4J%c5%e7%c3%d2%b1K%bdX%a1y0316381%a1z%a5H%b6i%a6%e6%b7%7c%ad%fb%b5n%a4J%bb%7b%c3%d2%a1C%b7s%a5%fa%b2%a3%c0I%b7q%a4W,127.0.0.1)
+17:08:04(0); Update OTPLog Set  RetCode = @RetCode,  RetStatus = @RetStatus  Where 1=1  And me_id = @me_id  And me_mobile = @me_mobile  And otp = @otp  And pkey = (Select Max(pkey) From OTPLog Where  1=1 And  me_id = @me_id And me_mobile = @me_mobile And otp = @otp ) (H14A2966,Success,F125003281,0920716281,0316381)
+17:08:41(0);  Select Top 1 * From member Where  me_pid = @me_pid (F125003281)
+17:08:41(0); insert into OTPLog ( me_id,  me_mobile,  BGNDT,  ENDDT,  otp,  sIP,  Dcreate,  PEstatus,  sType,  ReCount )  values( @me_id,  @me_mobile,  DATEADD (minute, -2 , getdate()),  DATEADD (minute,  5 , getdate()),  @otp,  @sIP,  {fn now()},  'Y',  @sType,  '0' )(F125003281,0920716281,6762858,127.0.0.1,5)
+17:08:41(0);  insert into qryLog ( uid,  utype,  qrySql,  qryinfo,  sqryip ) values(  @uid,  @utype,  @qrySql,  @qryinfo,  @sqryip )(SendSmsAndEmail,R,<html>
+<header>
+</header>
+<body>
+0920716281|0|H14A299F|Success<br>
+</body>
+</html>
+,http://imsp.emome.net:8008/imsp/sms/servlet/SubmitSM?account=10267&password=10267&to_addr=0920716281&msg_type=0&msg=%bf%cb%b7R%aa%ba%ab%c8%a4%e1%b1z%a6n%2c%bd%d0%a6b5%a4%c0%c4%c1%a4%ba%bf%e9%a4J%c5%e7%c3%d2%b1K%bdX%a1y6762858%a1z%a5H%b6i%a6%e6%b7%7c%ad%fb%b5n%a4J%bb%7b%c3%d2%a1C%b7s%a5%fa%b2%a3%c0I%b7q%a4W,127.0.0.1)
+17:08:41(0); Update OTPLog Set  RetCode = @RetCode,  RetStatus = @RetStatus  Where 1=1  And me_id = @me_id  And me_mobile = @me_mobile  And otp = @otp  And pkey = (Select Max(pkey) From OTPLog Where  1=1 And  me_id = @me_id And me_mobile = @me_mobile And otp = @otp ) (H14A299F,Success,F125003281,0920716281,6762858)
+17:33:34(0);  Select Top 1 * From member Where  me_pid = @me_pid (F125003281)
+17:33:34(0); insert into OTPLog ( me_id,  me_mobile,  BGNDT,  ENDDT,  otp,  sIP,  Dcreate,  PEstatus,  sType,  ReCount )  values( @me_id,  @me_mobile,  DATEADD (minute, -2 , getdate()),  DATEADD (minute,  5 , getdate()),  @otp,  @sIP,  {fn now()},  'Y',  @sType,  '0' )(F125003281,0920716281,3626398,127.0.0.1,5)
+17:33:35(0);  insert into qryLog ( uid,  utype,  qrySql,  qryinfo,  sqryip ) values(  @uid,  @utype,  @qrySql,  @qryinfo,  @sqryip )(SendSmsAndEmail,R,<html>
+<header>
+</header>
+<body>
+0920716281|0|H14A8CB9|Success<br>
+</body>
+</html>
+,http://imsp.emome.net:8008/imsp/sms/servlet/SubmitSM?account=10267&password=10267&to_addr=0920716281&msg_type=0&msg=%bf%cb%b7R%aa%ba%ab%c8%a4%e1%b1z%a6n%2c%bd%d0%a6b5%a4%c0%c4%c1%a4%ba%bf%e9%a4J%c5%e7%c3%d2%b1K%bdX%a1y3626398%a1z%a5H%b6i%a6%e6%b7%7c%ad%fb%b5n%a4J%bb%7b%c3%d2%a1C%b7s%a5%fa%b2%a3%c0I%b7q%a4W,127.0.0.1)
+17:33:35(0); Update OTPLog Set  RetCode = @RetCode,  RetStatus = @RetStatus  Where 1=1  And me_id = @me_id  And me_mobile = @me_mobile  And otp = @otp  And pkey = (Select Max(pkey) From OTPLog Where  1=1 And  me_id = @me_id And me_mobile = @me_mobile And otp = @otp ) (H14A8CB9,Success,F125003281,0920716281,3626398)
+17:33:50(0);  Select Top 1 * From member Where  me_pid = @me_pid (F125003281)
+17:33:50(0); insert into OTPLog ( me_id,  me_mobile,  BGNDT,  ENDDT,  otp,  sIP,  Dcreate,  PEstatus,  sType,  ReCount )  values( @me_id,  @me_mobile,  DATEADD (minute, -2 , getdate()),  DATEADD (minute,  5 , getdate()),  @otp,  @sIP,  {fn now()},  'Y',  @sType,  '0' )(F125003281,0920716281,1033337,127.0.0.1,5)
+17:33:50(0);  insert into qryLog ( uid,  utype,  qrySql,  qryinfo,  sqryip ) values(  @uid,  @utype,  @qrySql,  @qryinfo,  @sqryip )(SendSmsAndEmail,R,<html>
+<header>
+</header>
+<body>
+0920716281|0|H14A8CCD|Success<br>
+</body>
+</html>
+,http://imsp.emome.net:8008/imsp/sms/servlet/SubmitSM?account=10267&password=10267&to_addr=0920716281&msg_type=0&msg=%bf%cb%b7R%aa%ba%ab%c8%a4%e1%b1z%a6n%2c%bd%d0%a6b5%a4%c0%c4%c1%a4%ba%bf%e9%a4J%c5%e7%c3%d2%b1K%bdX%a1y1033337%a1z%a5H%b6i%a6%e6%b7%7c%ad%fb%b5n%a4J%bb%7b%c3%d2%a1C%b7s%a5%fa%b2%a3%c0I%b7q%a4W,127.0.0.1)
+17:33:50(0); Update OTPLog Set  RetCode = @RetCode,  RetStatus = @RetStatus  Where 1=1  And me_id = @me_id  And me_mobile = @me_mobile  And otp = @otp  And pkey = (Select Max(pkey) From OTPLog Where  1=1 And  me_id = @me_id And me_mobile = @me_mobile And otp = @otp ) (H14A8CCD,Success,F125003281,0920716281,1033337)
+17:34:05(0);  Select Top 1 * From member Where  me_pid = @me_pid (F125003281)
+17:34:06(0); insert into OTPLog ( me_id,  me_mobile,  BGNDT,  ENDDT,  otp,  sIP,  Dcreate,  PEstatus,  sType,  ReCount )  values( @me_id,  @me_mobile,  DATEADD (minute, -2 , getdate()),  DATEADD (minute,  5 , getdate()),  @otp,  @sIP,  {fn now()},  'Y',  @sType,  '0' )(F125003281,0920716281,9159544,127.0.0.1,5)
+17:34:06(0);  insert into qryLog ( uid,  utype,  qrySql,  qryinfo,  sqryip ) values(  @uid,  @utype,  @qrySql,  @qryinfo,  @sqryip )(SendSmsAndEmail,R,<html>
+<header>
+</header>
+<body>
+0920716281|0|H14A8CE6|Success<br>
+</body>
+</html>
+,http://imsp.emome.net:8008/imsp/sms/servlet/SubmitSM?account=10267&password=10267&to_addr=0920716281&msg_type=0&msg=%bf%cb%b7R%aa%ba%ab%c8%a4%e1%b1z%a6n%2c%bd%d0%a6b5%a4%c0%c4%c1%a4%ba%bf%e9%a4J%c5%e7%c3%d2%b1K%bdX%a1y9159544%a1z%a5H%b6i%a6%e6%b7%7c%ad%fb%b5n%a4J%bb%7b%c3%d2%a1C%b7s%a5%fa%b2%a3%c0I%b7q%a4W,127.0.0.1)
+17:34:06(0); Update OTPLog Set  RetCode = @RetCode,  RetStatus = @RetStatus  Where 1=1  And me_id = @me_id  And me_mobile = @me_mobile  And otp = @otp  And pkey = (Select Max(pkey) From OTPLog Where  1=1 And  me_id = @me_id And me_mobile = @me_mobile And otp = @otp ) (H14A8CE6,Success,F125003281,0920716281,9159544)
+17:37:22(0);  Select Top 1 * From member Where  me_pid = @me_pid (F125003281)
+17:37:22(0); insert into OTPLog ( me_id,  me_mobile,  BGNDT,  ENDDT,  otp,  sIP,  Dcreate,  PEstatus,  sType,  ReCount )  values( @me_id,  @me_mobile,  DATEADD (minute, -2 , getdate()),  DATEADD (minute,  5 , getdate()),  @otp,  @sIP,  {fn now()},  'Y',  @sType,  '0' )(F125003281,0920716281,9822479,127.0.0.1,5)
+17:37:22(0);  insert into qryLog ( uid,  utype,  qrySql,  qryinfo,  sqryip ) values(  @uid,  @utype,  @qrySql,  @qryinfo,  @sqryip )(SendSmsAndEmail,R,<html>
+<header>
+</header>
+<body>
+0920716281|0|H14A8E4D|Success<br>
+</body>
+</html>
+,http://imsp.emome.net:8008/imsp/sms/servlet/SubmitSM?account=10267&password=10267&to_addr=0920716281&msg_type=0&msg=%bf%cb%b7R%aa%ba%ab%c8%a4%e1%b1z%a6n%2c%bd%d0%a6b5%a4%c0%c4%c1%a4%ba%bf%e9%a4J%c5%e7%c3%d2%b1K%bdX%a1y9822479%a1z%a5H%b6i%a6%e6%b7%7c%ad%fb%b5n%a4J%bb%7b%c3%d2%a1C%b7s%a5%fa%b2%a3%c0I%b7q%a4W,127.0.0.1)
+17:37:22(0); Update OTPLog Set  RetCode = @RetCode,  RetStatus = @RetStatus  Where 1=1  And me_id = @me_id  And me_mobile = @me_mobile  And otp = @otp  And pkey = (Select Max(pkey) From OTPLog Where  1=1 And  me_id = @me_id And me_mobile = @me_mobile And otp = @otp ) (H14A8E4D,Success,F125003281,0920716281,9822479)
+18:16:53(0);  Select Top 1 * From member Where  me_pid = @me_pid (F125003281)
+18:16:53(0); insert into OTPLog ( me_id,  me_mobile,  BGNDT,  ENDDT,  otp,  sIP,  Dcreate,  PEstatus,  sType,  ReCount )  values( @me_id,  @me_mobile,  DATEADD (minute, -2 , getdate()),  DATEADD (minute,  5 , getdate()),  @otp,  @sIP,  {fn now()},  'Y',  @sType,  '0' )(F125003281,0920716281,4935774,127.0.0.1,5)
+18:16:54(0);  insert into qryLog ( uid,  utype,  qrySql,  qryinfo,  sqryip ) values(  @uid,  @utype,  @qrySql,  @qryinfo,  @sqryip )(SendSmsAndEmail,R,<html>
+<header>
+</header>
+<body>
+0920716281|0|H14AA874|Success<br>
+</body>
+</html>
+,http://imsp.emome.net:8008/imsp/sms/servlet/SubmitSM?account=10267&password=10267&to_addr=0920716281&msg_type=0&msg=%bf%cb%b7R%aa%ba%ab%c8%a4%e1%b1z%a6n%2c%bd%d0%a6b5%a4%c0%c4%c1%a4%ba%bf%e9%a4J%c5%e7%c3%d2%b1K%bdX%a1y4935774%a1z%a5H%b6i%a6%e6%b7%7c%ad%fb%b5n%a4J%bb%7b%c3%d2%a1C%b7s%a5%fa%b2%a3%c0I%b7q%a4W,127.0.0.1)
+18:16:54(0); Update OTPLog Set  RetCode = @RetCode,  RetStatus = @RetStatus  Where 1=1  And me_id = @me_id  And me_mobile = @me_mobile  And otp = @otp  And pkey = (Select Max(pkey) From OTPLog Where  1=1 And  me_id = @me_id And me_mobile = @me_mobile And otp = @otp ) (H14AA874,Success,F125003281,0920716281,4935774)
+18:18:48(0);  Select Top 1 * From member Where  me_pid = @me_pid (F125003281)
+18:18:48(0); insert into OTPLog ( me_id,  me_mobile,  BGNDT,  ENDDT,  otp,  sIP,  Dcreate,  PEstatus,  sType,  ReCount )  values( @me_id,  @me_mobile,  DATEADD (minute, -2 , getdate()),  DATEADD (minute,  5 , getdate()),  @otp,  @sIP,  {fn now()},  'Y',  @sType,  '0' )(F125003281,0920716281,7024478,127.0.0.1,5)
+18:18:49(0);  insert into qryLog ( uid,  utype,  qrySql,  qryinfo,  sqryip ) values(  @uid,  @utype,  @qrySql,  @qryinfo,  @sqryip )(SendSmsAndEmail,R,<html>
+<header>
+</header>
+<body>
+0920716281|0|H14AA8E9|Success<br>
+</body>
+</html>
+,http://imsp.emome.net:8008/imsp/sms/servlet/SubmitSM?account=10267&password=10267&to_addr=0920716281&msg_type=0&msg=%bf%cb%b7R%aa%ba%ab%c8%a4%e1%b1z%a6n%2c%bd%d0%a6b5%a4%c0%c4%c1%a4%ba%bf%e9%a4J%c5%e7%c3%d2%b1K%bdX%a1y7024478%a1z%a5H%b6i%a6%e6%b7%7c%ad%fb%b5n%a4J%bb%7b%c3%d2%a1C%b7s%a5%fa%b2%a3%c0I%b7q%a4W,127.0.0.1)
+18:18:49(0); Update OTPLog Set  RetCode = @RetCode,  RetStatus = @RetStatus  Where 1=1  And me_id = @me_id  And me_mobile = @me_mobile  And otp = @otp  And pkey = (Select Max(pkey) From OTPLog Where  1=1 And  me_id = @me_id And me_mobile = @me_mobile And otp = @otp ) (H14AA8E9,Success,F125003281,0920716281,7024478)

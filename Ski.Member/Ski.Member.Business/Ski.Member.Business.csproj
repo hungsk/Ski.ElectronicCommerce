@@ -1,0 +1,41 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup Label="Globals">
+    <SccProjectName>SAK</SccProjectName>
+    <SccProvider>SAK</SccProvider>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccLocalPath>SAK</SccLocalPath>
+  </PropertyGroup>
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="ClaimLogics\**" />
+    <Compile Remove="PolicyLogics\**" />
+    <EmbeddedResource Remove="ClaimLogics\**" />
+    <EmbeddedResource Remove="PolicyLogics\**" />
+    <None Remove="ClaimLogics\**" />
+    <None Remove="PolicyLogics\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Ski.Base.Util\Ski.Base.Util.csproj" />
+    <ProjectReference Include="..\Ski.Member.Data\Ski.Member.Data.csproj" />
+    <ProjectReference Include="..\Ski.Member.Domain\Ski.Member.Domain.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.IdentityModel.Tokens" Version="6.17.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="BASE64Encrypt">
+      <HintPath>..\packages\BASE64Encrypt.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
+</Project>

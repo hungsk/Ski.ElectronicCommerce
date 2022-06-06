@@ -7,7 +7,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Ski.Base.Util\Ski.Base.Util.csproj" />
+    <ProjectReference Include="..\..\Ski.Base\Ski.Base.Util\Ski.Base.Util.csproj" />
     <ProjectReference Include="..\Ski.Demo1.Data\Ski.Demo1.Data.csproj" />
     <ProjectReference Include="..\Ski.Demo1.Domain\Ski.Demo1.Domain.csproj" />
   </ItemGroup>

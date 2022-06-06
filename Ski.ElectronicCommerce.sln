@@ -17,19 +17,19 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "7-TestLayer", "7-TestLayer"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "1-PresentationLayer", "1-PresentationLayer", "{CD32A8B0-1CA3-4103-B3BF-FA425032AD0E}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Ski.Base.Util", "Ski.Base.Util\Ski.Base.Util.csproj", "{0FFDB7D5-23B0-432A-8A68-CEFE4B578BF7}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Ski.Base\Ski.Base.Util", "Ski.Base\Ski.Base.Util\Ski.Base.Util.csproj", "{0FFDB7D5-23B0-432A-8A68-CEFE4B578BF7}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Ski.Demo1.Domain", "Ski.Demo1.Domain\Ski.Demo1.Domain.csproj", "{053E1BCF-3B88-4EAE-B588-4BC42B91E624}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Ski.Demo1\Ski.Demo1.Domain", "Ski.Demo1\Ski.Demo1.Domain\Ski.Demo1.Domain.csproj", "{053E1BCF-3B88-4EAE-B588-4BC42B91E624}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Ski.Demo1.Data", "Ski.Demo1.Data\Ski.Demo1.Data.csproj", "{AAFF87CF-EBA4-4E2B-B274-267AF05B0C6A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Ski.Demo1\Ski.Demo1.Data", "Ski.Demo1\Ski.Demo1.Data\Ski.Demo1.Data.csproj", "{AAFF87CF-EBA4-4E2B-B274-267AF05B0C6A}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Ski.Demo1.Business", "Ski.Demo1.Business\Ski.Demo1.Business.csproj", "{2F6F2F60-F0BC-48DC-AB1D-F59DF706D20C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Ski.Demo1\Ski.Demo1.Business", "Ski.Demo1\Ski.Demo1.Business\Ski.Demo1.Business.csproj", "{2F6F2F60-F0BC-48DC-AB1D-F59DF706D20C}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Ski.Demo1.WebService", "Ski.Demo1.WebService\Ski.Demo1.WebService.csproj", "{3AE5CB80-2BAE-4D19-AEA1-3810833479A7}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Ski.Demo1\Ski.Demo1.WebService", "Ski.Demo1\Ski.Demo1.WebService\Ski.Demo1.WebService.csproj", "{3AE5CB80-2BAE-4D19-AEA1-3810833479A7}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Ski.Demo1.Test", "Ski.Demo1.Test\Ski.Demo1.Test.csproj", "{BABD2567-2A67-425A-A055-845F5FCDD4D0}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Ski.Demo1\Ski.Demo1.Test", "Ski.Demo1\Ski.Demo1.Test\Ski.Demo1.Test.csproj", "{BABD2567-2A67-425A-A055-845F5FCDD4D0}"
 EndProject
-Project("{54A90642-561A-4BB1-A94E-469ADEE60C69}") = "ski.demo1.website", "Ski.Demo1.Website\ski.demo1.website.esproj", "{4BCC7D52-F4E1-4394-8D80-D99754D36B03}"
+Project("{54A90642-561A-4BB1-A94E-469ADEE60C69}") = "Ski.Demo1\ski.demo1.website", "Ski.Demo1\Ski.Demo1.Website\ski.demo1.website.esproj", "{4BCC7D52-F4E1-4394-8D80-D99754D36B03}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
