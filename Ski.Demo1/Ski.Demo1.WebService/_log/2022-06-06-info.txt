@@ -1,1 +1,6 @@
 21:58:56(0); 開始啟動Ski.ElectronicCommerce應用程式
+22:05:26(0); 開始啟動Ski.ElectronicCommerce應用程式
+22:16:42(0); 開始啟動Ski.ElectronicCommerce應用程式
+22:17:41(0); 開始啟動Ski.ElectronicCommerce應用程式
+22:19:07(0); 開始啟動Ski.ElectronicCommerce應用程式
+22:31:05(0); 開始啟動Ski.ElectronicCommerce應用程式

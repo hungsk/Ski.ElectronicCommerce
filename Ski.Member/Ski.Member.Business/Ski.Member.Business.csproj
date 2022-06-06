@@ -23,19 +23,13 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Ski.Base.Util\Ski.Base.Util.csproj" />
+    <ProjectReference Include="..\..\Ski.Base\Ski.Base.Util\Ski.Base.Util.csproj" />
     <ProjectReference Include="..\Ski.Member.Data\Ski.Member.Data.csproj" />
     <ProjectReference Include="..\Ski.Member.Domain\Ski.Member.Domain.csproj" />
   </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="Microsoft.IdentityModel.Tokens" Version="6.17.0" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Reference Include="BASE64Encrypt">
-      <HintPath>..\packages\BASE64Encrypt.dll</HintPath>
-    </Reference>
   </ItemGroup>
 
 </Project>

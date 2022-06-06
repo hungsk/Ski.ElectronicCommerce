@@ -442,16 +442,17 @@ namespace Ski.Member.Business.CommonLogics
             try
             {
                 //Base64字串加解密工具
-                var base64Oobj = new BASE64Encrypt.SKIEncrypt.DES();
-                switch (process)
-                {
-                    case Base64Encrypt.Decode:
-                        return base64Oobj.Decrypt(aStr);
-                    case Base64Encrypt.Encode:
-                        return base64Oobj.Encrypt(aStr);
-                    default:
-                        return string.Empty;
-                }
+                //var base64Oobj = new BASE64Encrypt.SKIEncrypt.DES();
+                //switch (process)
+                //{
+                //    case Base64Encrypt.Decode:
+                //        return base64Oobj.Decrypt(aStr);
+                //    case Base64Encrypt.Encode:
+                //        return base64Oobj.Encrypt(aStr);
+                //    default:
+                //        return string.Empty;
+                //}
+                return string.Empty;
             }
             catch (Exception ex)
             {
