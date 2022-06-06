@@ -286,6 +286,9 @@ FakesAssemblies/
 node_modules/
 dist/
 
+# LogFile
+_log/
+
 # Visual Studio 6 build log
 *.plg
 
