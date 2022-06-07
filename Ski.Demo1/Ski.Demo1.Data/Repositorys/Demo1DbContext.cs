@@ -13,6 +13,12 @@ namespace Ski.Demo1.Data
         {
         }
 
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        {
+            optionsBuilder.UseSqlServer(
+                @"data source=(localdb)\MSSQLLocalDB;database=Demo1");  
+        }
+
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<ImagesUrl>()
