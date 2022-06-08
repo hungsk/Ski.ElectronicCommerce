@@ -15,6 +15,8 @@ namespace Ski.Demo1.Business
 
         public EditResponse Create(ProductRequest request)
         {
+            var ruletset = _Rule.Run();
+
             var req = request.data;
             var productEntity = new Product
             {
