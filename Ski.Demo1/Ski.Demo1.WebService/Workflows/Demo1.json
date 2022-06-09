@@ -22,18 +22,18 @@
     "WorkflowName": "CartCreate",
     "Rules": [
       {
-        "RuleName": "CheckUnit",
-        "ErrorMessage": "單位必須是元",
+        "RuleName": "CheckUsername",
+        "ErrorMessage": "客戶名稱為必輸",
         "ErrorType": "Error",
         "RuleExpressionType": "LambdaExpression",
-        "Expression": "unit == \"元\" "
+        "Expression": "username != null "
       },
       {
-        "RuleName": "CheckPrice",
-        "ErrorMessage": "價格必須大於0",
+        "RuleName": "CheckQty",
+        "ErrorMessage": "數量必須大於0",
         "ErrorType": "Error",
         "RuleExpressionType": "LambdaExpression",
-        "Expression": "price > 0"
+        "Expression": "qty > 0"
       }
     ]
   }
