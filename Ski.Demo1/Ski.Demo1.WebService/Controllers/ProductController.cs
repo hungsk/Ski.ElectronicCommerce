@@ -15,7 +15,7 @@ namespace Ski.Demo1.WebService.Controllers
         }
 
         [Route("api/hung/admin/product")]
-        [Authorize]
+        //[Authorize]
         [HttpPost]
         public EditResponse AddProduct(ProductRequest request)
         {

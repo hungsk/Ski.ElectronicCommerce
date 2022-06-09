@@ -1,0 +1,40 @@
+[
+  {
+    "WorkflowName": "ProductCreate",
+    "Rules": [
+      {
+        "RuleName": "CheckUnit",
+        "ErrorMessage": "單位必須是元",
+        "ErrorType": "Error",
+        "RuleExpressionType": "LambdaExpression",
+        "Expression": "unit == \"元\" "
+      },
+      {
+        "RuleName": "CheckPrice",
+        "ErrorMessage": "價格必須大於0",
+        "ErrorType": "Error",
+        "RuleExpressionType": "LambdaExpression",
+        "Expression": "price > 0"
+      }
+    ]
+  },
+  {
+    "WorkflowName": "CartCreate",
+    "Rules": [
+      {
+        "RuleName": "CheckUnit",
+        "ErrorMessage": "單位必須是元",
+        "ErrorType": "Error",
+        "RuleExpressionType": "LambdaExpression",
+        "Expression": "unit == \"元\" "
+      },
+      {
+        "RuleName": "CheckPrice",
+        "ErrorMessage": "價格必須大於0",
+        "ErrorType": "Error",
+        "RuleExpressionType": "LambdaExpression",
+        "Expression": "price > 0"
+      }
+    ]
+  }
+]

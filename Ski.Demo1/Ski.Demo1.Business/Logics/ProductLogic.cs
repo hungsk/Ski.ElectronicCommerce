@@ -1,5 +1,9 @@
-﻿using Ski.Base.Util.Services;
+﻿using Newtonsoft.Json;
+using Newtonsoft.Json.Converters;
+using RulesEngine.Extensions;
+using Ski.Base.Util.Services;
 using Ski.Demo1.Domain;
+using System.Dynamic;
 using System.Text.Json;
 
 namespace Ski.Demo1.Business
@@ -15,47 +19,37 @@ namespace Ski.Demo1.Business
 
         public EditResponse Create(ProductRequest request)
         {
-            var ruletset = _Rule.Run();
-
             var req = request.data;
-            var productEntity = new Product
+            var result = new EditResponse();
+
+            dynamic datas = new ExpandoObject();
+            datas.unit = req.unit;
+            datas.price = req.price;
+            var inputs = new dynamic[]
             {
-                id = Guid.NewGuid().ToString("N"),
-                title = req.title,
-                category = req.category,
-                origin_price = req.origin_price,
-                price = req.price,
-                unit = req.unit,
-                imageUrl = req.imageUrl,
-                description = req.description,
-                content = req.content,
-                is_enabled = req.is_enabled
+                datas
             };
-            if (req.imagesUrl != null)
+
+            var resultList = _Rule.Run("Demo1.json", "ProductCreate", inputs);
+            var failList = resultList.Where(i => i.IsSuccess == false);
+            if (failList.Count() > 0)
             {
-                List<ImagesUrl> imagesUrl = new List<ImagesUrl>();
-                foreach (string i in req.imagesUrl)
+                result.success = false;
+                foreach (var item in failList)
                 {
-                    imagesUrl.Add(
-                        new ImagesUrl()
-                        {
-                            url = i,
-                            productid = productEntity.id
-                        });
+                    result.message += String.Format("{0} ", item.ExceptionMessage);
                 }
-                productEntity.imagesUrl = imagesUrl;
             }
-
-            _unitOfWork.ProductRepository.Create(productEntity);
-
-            var key = _Redis.RedisTypeEstr.BaoList + "ProductAll";
-            _Redis.DeleteKeyAsync(key);
-
-            var result = new EditResponse()
+            else
             {
-                success = true,
-                message = "已建立產品",
-            };
+                _unitOfWork.ProductRepository.Create(GetProductEntity(req));
+
+                var key = _Redis.RedisTypeEstr.BaoList + "ProductAll";
+                _Redis.DeleteKeyAsync(key);
+
+                result.success = true;
+                result.message = "已建立產品";
+            }
 
             return result;
         }
@@ -177,7 +171,7 @@ namespace Ski.Demo1.Business
 
             //3.return redis data if existed
             if (value != null)
-                return JsonSerializer.Deserialize<ProductAllResponse>(value);
+                return JsonConvert.DeserializeObject<ProductAllResponse>(value);
 
             //4.read db
             var productList = _unitOfWork.ProductRepository.Get(includeProperties: product => product.imagesUrl).ToList();
@@ -186,7 +180,7 @@ namespace Ski.Demo1.Business
             result.products = productList.Select(x => Mapper(x)).ToList();
 
             //5.write redis & return data
-            _Redis.SetStrAsync(key, JsonSerializer.Serialize(result));
+            _Redis.SetStrAsync(key, JsonConvert.SerializeObject(result));
             return result;
         }
 
@@ -217,6 +211,39 @@ namespace Ski.Demo1.Business
         {
             _unitOfWork.SaveChanges();//Saves all unsaved result before disposing
             _unitOfWork.Dispose();
+        }
+
+        private static Product GetProductEntity(ProductDTO req)
+        {
+            var productEntity = new Product
+            {
+                id = Guid.NewGuid().ToString("N"),
+                title = req.title,
+                category = req.category,
+                origin_price = req.origin_price,
+                price = req.price,
+                unit = req.unit,
+                imageUrl = req.imageUrl,
+                description = req.description,
+                content = req.content,
+                is_enabled = req.is_enabled
+            };
+            if (req.imagesUrl != null)
+            {
+                List<ImagesUrl> imagesUrl = new List<ImagesUrl>();
+                foreach (string i in req.imagesUrl)
+                {
+                    imagesUrl.Add(
+                        new ImagesUrl()
+                        {
+                            url = i,
+                            productid = productEntity.id
+                        });
+                }
+                productEntity.imagesUrl = imagesUrl;
+            }
+
+            return productEntity;
         }
 
         public static ProductDTO Mapper(Product x)

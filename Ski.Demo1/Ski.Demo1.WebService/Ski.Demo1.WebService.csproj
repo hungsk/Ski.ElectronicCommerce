@@ -7,10 +7,12 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Content Remove="Workflows\Demo1.json" />
     <Content Remove="Workflows\Discount.json" />
   </ItemGroup>
 
   <ItemGroup>
+    <None Include="Workflows\Demo1.json" />
     <None Include="Workflows\Discount.json" />
   </ItemGroup>
 
