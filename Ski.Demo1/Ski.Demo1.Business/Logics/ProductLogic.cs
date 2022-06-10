@@ -1,14 +1,16 @@
 ﻿using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 using RulesEngine.Extensions;
+using RulesEngine.Models;
 using Ski.Base.Util.Services;
+using Ski.Demo1.Business.Rules;
 using Ski.Demo1.Domain;
 using System.Dynamic;
 using System.Text.Json;
 
 namespace Ski.Demo1.Business
 {
-    public class ProductLogic : IProductLogic
+    public class ProductLogic : ProductLogicRule, IProductLogic
     {
         private readonly IUnitOfWorks _unitOfWork;
 
@@ -21,16 +23,7 @@ namespace Ski.Demo1.Business
         {
             var req = request.data;
             var result = new EditResponse();
-
-            dynamic datas = new ExpandoObject();
-            datas.unit = req.unit;
-            datas.price = req.price;
-            var inputs = new dynamic[]
-            {
-                datas
-            };
-
-            var resultList = _Rule.Run("Demo1.json", "ProductCreate", inputs);
+            List<RuleResultTree> resultList = new ProductLogicRule().CreateInspect(req);
             var failList = resultList.Where(i => i.IsSuccess == false);
             if (failList.Count() > 0)
             {
