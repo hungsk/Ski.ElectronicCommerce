@@ -39,6 +39,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Ski.Member.Data", "Ski.Memb
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Ski.Member.Domain", "Ski.Member\Ski.Member.Domain\Ski.Member.Domain.csproj", "{379BADF5-751E-4216-9693-9E00FBA855DC}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ski.HealthChecks.WebService", "Ski.HealthChecks\Ski.HealthChecks.WebService\Ski.HealthChecks.WebService.csproj", "{F902C67D-B184-4A2A-8525-1C21F9D7D306}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -91,6 +93,10 @@ Global
 		{379BADF5-751E-4216-9693-9E00FBA855DC}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{379BADF5-751E-4216-9693-9E00FBA855DC}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{379BADF5-751E-4216-9693-9E00FBA855DC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F902C67D-B184-4A2A-8525-1C21F9D7D306}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F902C67D-B184-4A2A-8525-1C21F9D7D306}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F902C67D-B184-4A2A-8525-1C21F9D7D306}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F902C67D-B184-4A2A-8525-1C21F9D7D306}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -107,6 +113,7 @@ Global
 		{23D5A077-CC41-4298-BD27-1AC1932262E9} = {5723F559-2D97-4E4D-B179-05090343B5E0}
 		{C0A1B594-41FB-4467-8F07-4A5944D1DAE1} = {153E1C98-A82A-46EC-8600-6C62462510B6}
 		{379BADF5-751E-4216-9693-9E00FBA855DC} = {A171129C-A8B9-44DB-97C9-2116B71A25DA}
+		{F902C67D-B184-4A2A-8525-1C21F9D7D306} = {0E871D72-24E2-4EBA-82DB-5B01D511C2AE}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {9A1BDBB3-BDCD-4F48-B141-2D9209E377BB}
