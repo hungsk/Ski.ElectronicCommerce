@@ -1,0 +1,14 @@
+[
+  {
+    "WorkflowName": "MemberCreate",
+    "Rules": [
+      {
+        "RuleName": "IsNullOrWhiteSpace",
+        "ErrorMessage": "有Null或WhiteSpace",
+        "ErrorType": "Error",
+        "RuleExpressionType": "LambdaExpression",
+        "Expression": "string.IsNullOrWhiteSpace(Uid) || string.IsNullOrWhiteSpace(Password) || string.IsNullOrWhiteSpace(Name) || string.IsNullOrWhiteSpace(Birthday) || string.IsNullOrWhiteSpace(Mobile) || string.IsNullOrWhiteSpace(PostalCode) || string.IsNullOrWhiteSpace(Address) || string.IsNullOrWhiteSpace(Email)"
+      }
+    ]
+  }
+]

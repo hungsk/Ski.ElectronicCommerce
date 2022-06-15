@@ -9,6 +9,7 @@ using System.Text;
 using Newtonsoft.Json.Linq;
 using System.Globalization;
 using System.Web;
+using System.Dynamic;
 
 namespace Ski.Member.Business.MemberLogics
 {
@@ -107,6 +108,23 @@ namespace Ski.Member.Business.MemberLogics
         /// <returns></returns>
         public string MemberCreateRequestCheck(MemberCreateRequest request)
         {
+            dynamic datas = new ExpandoObject();
+            datas.Uid = request.Uid;
+            datas.Password = request.Password;
+            datas.Name = request.Name;
+            datas.Birthday = request.Birthday;
+            datas.Mobile = request.Mobile;
+            datas.PostalCode = request.PostalCode;
+            datas.Address = request.Address;
+            datas.Email = request.Email;
+            var inputs = new dynamic[]
+            {
+                datas
+            };
+
+            var resultList = _Rule.Run("Member.json", "MemberCreate", inputs);
+
+
             var errorMsg = string.Empty;
             if (string.IsNullOrWhiteSpace(request.Uid) ||
                 string.IsNullOrWhiteSpace(request.Password) ||
