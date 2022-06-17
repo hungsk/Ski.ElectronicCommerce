@@ -11,12 +11,13 @@ const routes = [
         path: '/',
         name: 'Index',
         component: () => import('../views/Front/Index.vue')
+      },
+      {
+        path: '/registered',
+        name: 'Registered',
+        component: () => import('../views/Front/Registered.vue')
       }
     ]
-  },
-  {
-    path: '/:pathMatch(.*)*',
-    redirect: { name: 'Index' }
   }
 ]
 
