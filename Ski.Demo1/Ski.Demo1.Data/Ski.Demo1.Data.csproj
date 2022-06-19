@@ -13,10 +13,18 @@
       <PrivateAssets>all</PrivateAssets>
     </PackageReference>
     <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="6.0.5" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="6.0.5" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\Ski.Demo1.Domain\Ski.Demo1.Domain.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <None Remove="Microsoft.EntityFrameworkCore.Sqlite" />
+    <None Remove="Sqlite\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Sqlite\" />
+  </ItemGroup>
 </Project>

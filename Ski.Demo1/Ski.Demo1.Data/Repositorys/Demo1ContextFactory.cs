@@ -14,7 +14,8 @@ namespace Ski.Demo1.Data.Repositorys
         {
             var connectionString = args[0];
             var optionsBuilder = new DbContextOptionsBuilder<Demo1DbContext>();
-            optionsBuilder.UseSqlServer(connectionString);
+            //optionsBuilder.UseSqlServer(connectionString);
+            optionsBuilder.UseSqlite(connectionString);
 
             return new Demo1DbContext(optionsBuilder.Options);
         }

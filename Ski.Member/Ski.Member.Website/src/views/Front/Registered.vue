@@ -258,6 +258,8 @@
 </template>
 
 <script>
+import axios from 'axios'
+
 export default {
   name: 'Registered',
   data () {
@@ -284,7 +286,9 @@ export default {
       console.log('registerClick')
       const api = `${process.env.VUE_APP_API_MEMBERCREATE}`
       console.log(api)
-      this.$http.post(api, this.member)
+      console.log('xxxx')
+      console.log(axios)
+      axios.post(api, this.member)
         .then((res) => {
           console.log(res)
         })

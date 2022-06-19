@@ -20,7 +20,7 @@ var builder = WebApplication.CreateBuilder(args);
 
 try
 {
-    _Log.InfoAsync("¶}©l±Ò°ÊSki.ElectronicCommerceÀ³¥Îµ{¦¡");
+    _Log.InfoAsync("Start Ski.ElectronicCommerce");
 
     // Add services to the container.
 
@@ -37,7 +37,8 @@ try
     //EF Core
     builder.Services.AddDbContext<Demo1DbContext>(option =>
     {
-        option.UseSqlServer(builder.Configuration.GetConnectionString("Demo1Database"));
+        //option.UseSqlServer(builder.Configuration.GetConnectionString("Demo1Database"));
+        option.UseSqlite("Data Source=../ski.demo1.data/Sqlite/Demo1.db");
         option.EnableSensitiveDataLogging();
         option.LogTo(Console.WriteLine);
     });
@@ -65,7 +66,7 @@ try
             });
     });
 
-    //jwtÅçÃÒ
+    //jwtï¿½ï¿½ï¿½ï¿½
     builder.Services
         .AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
         .AddJwtBearer(opts =>
@@ -74,14 +75,14 @@ try
             {
                 ValidateIssuer = false,
                 ValidateAudience = false,
-                ValidateLifetime = true,  //¬O§_ÅçÃÒ¶W®É  ·í³]¸mexp©Mnbf®É¦³®Ä
-                ValidateIssuerSigningKey = true,  //¬O§_ÅçÃÒ±KÆ_
+                ValidateLifetime = true,  //ï¿½Oï¿½_ï¿½ï¿½ï¿½Ò¶Wï¿½ï¿½  ï¿½ï¿½ï¿½]ï¿½mexpï¿½Mnbfï¿½É¦ï¿½ï¿½ï¿½
+                ValidateIssuerSigningKey = true,  //ï¿½Oï¿½_ï¿½ï¿½ï¿½Ò±Kï¿½_
                 IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(builder.Configuration["Jwt:Key"]))   //SecurityKey
                                                                                                                         //ValidAudience = "http://localhost:49999",//Audience
-                                                                                                                        //ValidIssuer = "http://localhost:49998",//Issuer¡A³o¨â¶µ©Mµn¤J®É¹{µoªº¤@­P
-                                                                                                                        //½w½Ä¹L´Á®É¶¡¡AÁ`ªº¦³®Ä®É¶¡µ¥©ó³o­Ó®É¶¡¥[¤Wjwtªº¹L´Á®É¶¡¡A¹w³]¬°5¤ÀÄÁ
-                                                                                                                        //ª`·N³o¬O½w½Ä¹L´Á®É¶¡¡AÁ`ªº¦³®Ä®É¶¡µ¥©ó³o­Ó®É¶¡¥[¤Wjwtªº¹L´Á®É¶¡¡A¦pªG¤£°t¸m¡AÀq»{¬O5¤ÀÄÁ
-                                                                                                                        //ClockSkew = TimeSpan.FromMinutes(60)   //³]¸m¹L´Á®É¶¡
+                                                                                                                        //ValidIssuer = "http://localhost:49998",//Issuerï¿½Aï¿½oï¿½â¶µï¿½Mï¿½nï¿½Jï¿½É¹{ï¿½oï¿½ï¿½ï¿½@ï¿½P
+                                                                                                                        //ï¿½wï¿½Ä¹Lï¿½ï¿½ï¿½É¶ï¿½ï¿½Aï¿½`ï¿½ï¿½ï¿½ï¿½ï¿½Ä®É¶ï¿½ï¿½ï¿½ï¿½ï¿½oï¿½Ó®É¶ï¿½ï¿½[ï¿½Wjwtï¿½ï¿½ï¿½Lï¿½ï¿½ï¿½É¶ï¿½ï¿½Aï¿½wï¿½]ï¿½ï¿½5ï¿½ï¿½ï¿½ï¿½
+                                                                                                                        //ï¿½`ï¿½Nï¿½oï¿½Oï¿½wï¿½Ä¹Lï¿½ï¿½ï¿½É¶ï¿½ï¿½Aï¿½`ï¿½ï¿½ï¿½ï¿½ï¿½Ä®É¶ï¿½ï¿½ï¿½ï¿½ï¿½oï¿½Ó®É¶ï¿½ï¿½[ï¿½Wjwtï¿½ï¿½ï¿½Lï¿½ï¿½ï¿½É¶ï¿½ï¿½Aï¿½pï¿½Gï¿½ï¿½ï¿½tï¿½mï¿½Aï¿½qï¿½{ï¿½O5ï¿½ï¿½ï¿½ï¿½
+                                                                                                                        //ClockSkew = TimeSpan.FromMinutes(60)   //ï¿½]ï¿½mï¿½Lï¿½ï¿½ï¿½É¶ï¿½
             };
         });
 
@@ -106,8 +107,8 @@ try
 
     app.UseCors();
 
-    app.UseAuthentication();    //»{µý
-    app.UseAuthorization();     //±ÂÅv
+    app.UseAuthentication();    //ï¿½{ï¿½ï¿½
+    app.UseAuthorization();     //ï¿½ï¿½ï¿½v
 
     app.MapControllers();
 
@@ -115,16 +116,16 @@ try
 }
 catch (Exception ex)
 {
-    _Log.ErrorAsync("±Ò°Ê¥¢±Ñ" + ex);
+    _Log.ErrorAsync("Error" + ex);
 }
 finally
 {
-    _Log.InfoAsync("finally");
+    _Log.InfoAsync("Finally");
 }
 
 //void UpdateApiErrorResponse(HttpContext context, Exception ex, ApiError error)
 //{
 //    Log.Error("{ErrorMessage}--{ErrorId}.", ex.StackTrace, error.Id);
-//    error.Detail = "µo¥Í¿ù»~" + ex.Message;
+//    error.Detail = "ï¿½oï¿½Í¿ï¿½ï¿½~" + ex.Message;
 //}
 
