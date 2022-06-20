@@ -79,8 +79,10 @@ app.UseHttpsRedirection();
 
 app.UseRouting();
 
-app.UseAuthentication();    //�{��
-app.UseAuthorization();     //���v
+app.UseCors();
+
+app.UseAuthentication();    //認証
+app.UseAuthorization();     //授權
 
 app.MapControllers();
 

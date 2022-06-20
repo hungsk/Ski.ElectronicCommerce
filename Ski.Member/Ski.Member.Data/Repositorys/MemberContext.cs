@@ -14,6 +14,14 @@ namespace Ski.Member.Data
         {
         }
 
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        {
+            //    optionsBuilder.UseSqlServer(
+            //        @"data source=(localdb)\MSSQLLocalDB;database=Demo1");
+            optionsBuilder.UseSqlite(
+                "Data Source=../ski.member.data/Sqlite/Member.db");
+        }
+
         public virtual DbSet<MemberModel> Member { get; set; }
     }
 }
