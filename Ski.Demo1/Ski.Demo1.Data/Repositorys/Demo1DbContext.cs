@@ -24,6 +24,9 @@ namespace Ski.Demo1.Data
             modelBuilder.Entity<ImagesUrl>()
                  .HasKey(c => new { c.url, c.productid });
 
+            modelBuilder.Entity<Tags>()
+                 .HasKey(c => new { c.Name, c.ArticlesId });
+
             //modelBuilder.Entity<OrderItem>()
             //     .HasKey(c => new { c.orderid, c.productid });
 
@@ -37,8 +40,9 @@ namespace Ski.Demo1.Data
 
         //Product
         public virtual DbSet<Product> Product { get; set; }
-
         public virtual DbSet<ImagesUrl> ImagesUrl { get; set; }
+        public virtual DbSet<Articles> Articles { get; set; }
+        public virtual DbSet<Tags> Tags { get; set; }
         public virtual DbSet<Cart> Cart { get; set; }
         public virtual DbSet<Order> Order { get; set; }
         public virtual DbSet<OrderItem> OrderItem { get; set; }

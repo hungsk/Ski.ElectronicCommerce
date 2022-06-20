@@ -20,7 +20,7 @@ var builder = WebApplication.CreateBuilder(args);
 
 try
 {
-    _Log.InfoAsync("Start Ski.ElectronicCommerce");
+    _Log.InfoAsync("開始啟動Ski.ElectronicCommerce應用程式");
 
     // Add services to the container.
 
@@ -37,8 +37,8 @@ try
     //EF Core
     builder.Services.AddDbContext<Demo1DbContext>(option =>
     {
-        //option.UseSqlServer(builder.Configuration.GetConnectionString("Demo1Database"));
-        option.UseSqlite("Data Source=../ski.demo1.data/Sqlite/Demo1.db");
+        option.UseSqlServer(builder.Configuration.GetConnectionString("Demo1Database"));
+        //option.UseSqlite("Data Source=../ski.demo1.data/Sqlite/Demo1.db");
         option.EnableSensitiveDataLogging();
         option.LogTo(Console.WriteLine);
     });
@@ -48,6 +48,7 @@ try
     builder.Services.AddScoped<IProductLogic, ProductLogic>();
     builder.Services.AddScoped<ICartLogic, CartLogic>();
     builder.Services.AddScoped<IOrderLogic, OrderLogic>();
+    builder.Services.AddScoped<IArticlesLogic, ArticlesLogic>();
 
     //Cors
     builder.Services.AddCors(options =>
@@ -66,7 +67,7 @@ try
             });
     });
 
-    //jwt����
+    //jwt驗證
     builder.Services
         .AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
         .AddJwtBearer(opts =>
@@ -75,14 +76,14 @@ try
             {
                 ValidateIssuer = false,
                 ValidateAudience = false,
-                ValidateLifetime = true,  //�O�_���ҶW��  ���]�mexp�Mnbf�ɦ���
-                ValidateIssuerSigningKey = true,  //�O�_���ұK�_
+                ValidateLifetime = true,  //是否驗證超時  當設置exp和nbf時有效
+                ValidateIssuerSigningKey = true,  //是否驗證密鑰
                 IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(builder.Configuration["Jwt:Key"]))   //SecurityKey
                                                                                                                         //ValidAudience = "http://localhost:49999",//Audience
-                                                                                                                        //ValidIssuer = "http://localhost:49998",//Issuer�A�o�ⶵ�M�n�J�ɹ{�o���@�P
-                                                                                                                        //�w�ĹL���ɶ��A�`�����Įɶ�����o�Ӯɶ��[�Wjwt���L���ɶ��A�w�]��5����
-                                                                                                                        //�`�N�o�O�w�ĹL���ɶ��A�`�����Įɶ�����o�Ӯɶ��[�Wjwt���L���ɶ��A�p�G���t�m�A�q�{�O5����
-                                                                                                                        //ClockSkew = TimeSpan.FromMinutes(60)   //�]�m�L���ɶ�
+                                                                                                                        //ValidIssuer = "http://localhost:49998",//Issuer，這兩項和登入時頒發的一致
+                                                                                                                        //緩衝過期時間，總的有效時間等於這個時間加上jwt的過期時間，預設為5分鐘
+                                                                                                                        //注意這是緩衝過期時間，總的有效時間等於這個時間加上jwt的過期時間，如果不配置，默認是5分鐘
+                                                                                                                        //ClockSkew = TimeSpan.FromMinutes(60)   //設置過期時間ɶ�
             };
         });
 
@@ -107,8 +108,8 @@ try
 
     app.UseCors();
 
-    app.UseAuthentication();    //�{��
-    app.UseAuthorization();     //���v
+    app.UseAuthentication();    //認証
+    app.UseAuthorization();     //授權
 
     app.MapControllers();
 
@@ -116,7 +117,7 @@ try
 }
 catch (Exception ex)
 {
-    _Log.ErrorAsync("Error" + ex);
+    _Log.ErrorAsync("啟動失敗" + ex);
 }
 finally
 {

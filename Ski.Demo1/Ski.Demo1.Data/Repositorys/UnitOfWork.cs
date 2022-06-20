@@ -10,6 +10,7 @@ namespace Ski.Demo1.Data
         private GenericRepository<Cart> _cartRepository;
         private GenericRepository<Order> _orderRepository;
         private GenericRepository<User> _userRepository;
+        private GenericRepository<Articles> _articlesRepository;
 
         public UnitOfWork(Demo1DbContext context)
         {
@@ -25,6 +26,18 @@ namespace Ski.Demo1.Data
                     this._productRepository = new GenericRepository<Product>(_context);
                 }
                 return _productRepository;
+            }
+        }
+
+        public IGenericRepository<Articles> ArticlesRepository
+        {
+            get
+            {
+                if (this._articlesRepository == null)
+                {
+                    this._articlesRepository = new GenericRepository<Articles>(_context);
+                }
+                return _articlesRepository;
             }
         }
 

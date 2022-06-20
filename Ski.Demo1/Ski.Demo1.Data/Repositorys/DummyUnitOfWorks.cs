@@ -8,11 +8,13 @@ namespace Ski.Demo1.Data
         private DummyGenericRepository<Cart> _cartRepository;
         private DummyGenericRepository<Order> _orderRepository;
         private DummyGenericRepository<User> _userRepository;
+        private DummyGenericRepository<Articles> _articlesRepository;
 
         private List<Product> _prodcutContext = null;
         private List<Cart> _cartContext = null;
         private List<Order> _orderContext = null;
         private List<User> _userContext = null;
+        private List<Articles> _articlesContext = null;
 
         public DummyUnitOfWorks(List<Product> context)
         {
@@ -32,6 +34,18 @@ namespace Ski.Demo1.Data
         public DummyUnitOfWorks(List<User> context)
         {
             _userContext = context;
+        }
+
+        public IGenericRepository<Articles> ArticlesRepository
+        {
+            get
+            {
+                if (this._articlesRepository == null)
+                {
+                    this._articlesRepository = new DummyGenericRepository<Articles>(_articlesContext);
+                }
+                return _articlesRepository;
+            }
         }
 
         public IGenericRepository<Product> ProductRepository
