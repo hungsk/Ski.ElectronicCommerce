@@ -27,7 +27,8 @@ builder.Services.AddTransient<DbCommand, SqlCommand>();
 //EF Core
 builder.Services.AddDbContext<MemberDbContext>(option =>
 {
-    option.UseSqlServer("data source=172.20.103.78;user id=shinkong;password=shinkong5678;database=shinkong");
+    //option.UseSqlServer("data source=172.20.103.78;user id=shinkong;password=shinkong5678;database=shinkong");
+    option.UseSqlite("Data Source=../ski.member.data/Sqlite/Member.db");
     option.EnableSensitiveDataLogging();
     option.LogTo(Console.WriteLine);
 });
@@ -40,6 +41,23 @@ builder.Services.AddTransient<IMemberRepository, MemberRepository>();
 var config = new ConfigDto();
 builder.Configuration.GetSection("FunConfig").Bind(config);
 _Fun.Config = config;
+
+//Cors
+builder.Services.AddCors(options =>
+{
+    options.AddDefaultPolicy(
+        builder =>
+        {
+            builder.WithOrigins("http://localhost:8080",
+                                "https://localhost:8080",
+                                "http://it221/SkiDemo",
+                                "http://localhost/SkiDemo",
+                                "https://ectest.sk-ins.com.tw/SkiDemo")
+                                .AllowCredentials()
+                                .AllowAnyHeader()
+                                .AllowAnyMethod();
+        });
+});
 
 var app = builder.Build();
 
@@ -61,8 +79,8 @@ app.UseHttpsRedirection();
 
 app.UseRouting();
 
-app.UseAuthentication();    //»{µý
-app.UseAuthorization();     //±ÂÅv
+app.UseAuthentication();    //ï¿½{ï¿½ï¿½
+app.UseAuthorization();     //ï¿½ï¿½ï¿½v
 
 app.MapControllers();
 
