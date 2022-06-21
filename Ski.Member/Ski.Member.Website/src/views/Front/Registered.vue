@@ -18,14 +18,14 @@
                                         <label for="Main_txtMemberId">會員帳號(身份證字號或居留證號)</label>
                                         <input name="ctl00$Main$txtMemberId" type="text" id="Main_txtMemberId"
                                             onkeydown="return (event.keyCode!=13);" placeholder="請輸入會員帳號(身份證字號或居留證號)"
-                                            onkeyup="this.value=this.value.toUpperCase().trim();" />
+                                            onkeyup="this.value=this.value.toUpperCase().trim();" v-model="member.uid"/>
                                     </div>
 
                                     <div class="fieldContent">
                                         <label for="Main_txtMemberName">會員姓名</label>
                                         <input name="ctl00$Main$txtMemberName" type="text" id="Main_txtMemberName"
                                             onkeydown="return (event.keyCode!=13);" placeholder="請輸入會員姓名"
-                                            onkeyup="this.value=this.value.trim();" />
+                                            onkeyup="this.value=this.value.trim();" v-model="member.name"/>
                                     </div>
 
                                     <div id="Main_uplBornDate">
@@ -131,7 +131,7 @@
                                         <input name="ctl00$Main$txtMemberMobile" type="text" maxlength="10"
                                             id="Main_txtMemberMobile"
                                             onkeydown="return (event.keyCode &lt; 48 || event.keyCode >57 || event.keyCode!=13);"
-                                            placeholder="請輸入手機號碼" />
+                                            placeholder="請輸入手機號碼" v-model="member.mobile"/>
                                     </div>
 
                                     <div id="Main_uplSelectCityArea">
@@ -180,13 +180,13 @@
                                     <div class="fieldContent">
                                         <label for="Main_txtMemberAddress">地址</label>
                                         <input name="ctl00$Main$txtMemberAddress" type="text" id="Main_txtMemberAddress"
-                                            onkeydown="return (event.keyCode!=13);" placeholder="請輸入地址" />
+                                            onkeydown="return (event.keyCode!=13);" placeholder="請輸入地址" v-model="member.address"/>
                                     </div>
 
                                     <div class="fieldContent">
                                         <label for="Main_txtMemberEmail">Email</label>
                                         <input name="ctl00$Main$txtMemberEmail" type="text" id="Main_txtMemberEmail"
-                                            onkeydown="return (event.keyCode!=13);" placeholder="請輸入Email" />
+                                            onkeydown="return (event.keyCode!=13);" placeholder="請輸入Email" v-model="member.email"/>
                                     </div>
 
                                 </div>
@@ -259,7 +259,6 @@
 
 <script>
 import axios from 'axios'
-
 export default {
   name: 'Registered',
   data () {
@@ -285,21 +284,23 @@ export default {
     registerClick () {
       console.log('registerClick')
       const api = `${process.env.VUE_APP_API_MEMBERCREATE}`
-      console.log(api)
-      console.log('xxxx')
-      console.log(axios)
-      axios.post(api, this.member)
-        .then((res) => {
-          console.log(res)
-        })
+      axios.post(api, this.member).then((res) => {
+        if (res.data.success) {
+            this.$swal("註冊成功");            
+        } else {
+            this.$swal(res.data.resultMsg);
+        }
+      }).catch((err) => {
+        this.$swal(err);
+      })
     },
     cancleClick () {
       console.log('registerClick')
       this.$router.push('/')
     },
     noticeTodo() {
-      alert('請實作！')
-    }    
+      this.$swal('請實作!');
+    }
   }
 }
 </script>
