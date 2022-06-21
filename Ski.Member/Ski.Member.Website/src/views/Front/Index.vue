@@ -36,7 +36,7 @@
                                             <ul>
                                                 <router-link to="/registered"><li>加入會員</li></router-link>
                                                 <li><a href='Login.aspx' title='會員登入'>會員登入</a></li>
-                                                <li><a href='https://www.sk858.com.tw/' title='回首頁投保'>回首頁投保</a></li>
+                                                <li><router-link to="/">回首頁投保</router-link></li>
                                             </ul>
                                         </div>
 

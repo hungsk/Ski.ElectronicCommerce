@@ -24,8 +24,8 @@
             <div class='container'>
                 <ul class='list-unstyled' id='navDropdown'>
                     <li><a href='https://www.sk858.com.tw/' title='回首頁投保'><i class='fa fa-home'></i> 回首頁投保</a></li>
-                    <li><a href='Default.aspx' title='會員專區'><i class='fa fa-user'></i> 會員專區</a></li>
-                    <li><a href='Registered.aspx' title='加入會員'><i class='fa fa-plus-circle'></i> 加入會員</a></li>
+                    <li><router-link to="/"><i class='fa fa-user'></i>會員專區</router-link></li>
+                    <li><router-link to="/registered"><i class='fa fa-plus-circle'></i>加入會員</router-link></li>
                     <li><a href='Login.aspx' title='會員登入'><i class='fa fa-sign-in'></i> 會員登入</a></li>
                 </ul>
             </div>
