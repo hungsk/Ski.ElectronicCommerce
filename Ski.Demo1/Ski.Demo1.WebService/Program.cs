@@ -49,6 +49,7 @@ try
     builder.Services.AddScoped<ICartLogic, CartLogic>();
     builder.Services.AddScoped<IOrderLogic, OrderLogic>();
     builder.Services.AddScoped<IArticlesLogic, ArticlesLogic>();
+    builder.Services.AddScoped<IPayLogic, PayLogic>();
 
     //Cors
     builder.Services.AddCors(options =>
