@@ -1,5 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using Ski.Member.Domain.Entities.MemberModels;
+using Ski.Member.Domain.Entities;
 
 namespace Ski.Member.Data
 {

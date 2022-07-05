@@ -1,14 +1,15 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using Ski.Member.Domain.Entities;
 
 namespace Ski.Member.Data
 {
-    public class SkDbContext : DbContext
+    public class ShinkongDbContext : DbContext
     {
-        public SkDbContext()
+        public ShinkongDbContext()
         {
         }
 
-        public SkDbContext(DbContextOptions<SkDbContext> options) : base(options)
+        public ShinkongDbContext(DbContextOptions<ShinkongDbContext> options) : base(options)
         {
         }
 
@@ -22,6 +23,6 @@ namespace Ski.Member.Data
         {
         }
 
-        public virtual DbSet<Domain.Member> Member { get; set; }
+        public virtual DbSet<MemberModel> Member { get; set; }
     }
 }

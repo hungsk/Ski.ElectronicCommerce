@@ -6,10 +6,10 @@ namespace Ski.Member.Data
 {
     public class GenericRepository<TEntity> : IGenericRepository<TEntity> where TEntity : class
     {
-        private readonly SkDbContext _context;
+        private readonly ShinkongDbContext _context;
         private DbSet<TEntity> _dbSet;
 
-        public GenericRepository(SkDbContext context)
+        public GenericRepository(ShinkongDbContext context)
         {
             _context = context;
             _dbSet = context.Set<TEntity>();

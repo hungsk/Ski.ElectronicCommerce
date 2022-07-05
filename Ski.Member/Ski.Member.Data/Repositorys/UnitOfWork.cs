@@ -1,25 +1,27 @@
 ﻿using Ski.Member.Domain;
+using Ski.Member.Domain.Entities;
+using Ski.Member.Domain.Interfaces;
 
 namespace Ski.Member.Data
 {
     public class UnitOfWork : IUnitOfWorks
     {
         private bool _disposed = false;
-        private SkDbContext _context;
-        private GenericRepository<Domain.Member> _memberRepository;
+        private ShinkongDbContext _context;
+        private GenericRepository<MemberModel> _memberRepository;
 
-        public UnitOfWork(SkDbContext context)
+        public UnitOfWork(ShinkongDbContext context)
         {
             _context = context;
         }
 
-        public IGenericRepository<Domain.Member> MemberRepository
+        public IGenericRepository<MemberModel> MemberRepository
         {
             get
             {
                 if (this._memberRepository == null)
                 {
-                    this._memberRepository = new GenericRepository<Domain.Member>(_context);
+                    this._memberRepository = new GenericRepository<MemberModel>(_context);
                 }
                 return _memberRepository;
             }

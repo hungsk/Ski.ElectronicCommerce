@@ -1,7 +1,9 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
-namespace Ski.Member.Domain.Entities.MemberModels
+namespace Ski.Member.Domain.Entities
 {
+    [Table("Member")]
     public class MemberModel
     {
         [Key]

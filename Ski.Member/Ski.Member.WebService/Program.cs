@@ -7,6 +7,8 @@ using Microsoft.IdentityModel.Tokens;
 using Ski.Member.Data;
 using System.Data.Common;
 using System.Data.SqlClient;
+using Ski.Member.Domain.Interfaces;
+using Ski.Member.Business.MemberLogics;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -25,17 +27,17 @@ builder.Services.AddTransient<DbConnection, SqlConnection>();
 builder.Services.AddTransient<DbCommand, SqlCommand>();
 
 //EF Core
-builder.Services.AddDbContext<MemberDbContext>(option =>
+builder.Services.AddDbContext<ShinkongDbContext>(option =>
 {
     //option.UseSqlServer("data source=172.20.103.78;user id=shinkong;password=shinkong5678;database=shinkong");
-    option.UseSqlite("Data Source=../ski.member.data/Sqlite/Member.db");
+    option.UseSqlite("Data Source=../ski.member.data/Sqlite/Shinkong.db");
     option.EnableSensitiveDataLogging();
     option.LogTo(Console.WriteLine);
 });
 
-
-//Repository
-builder.Services.AddTransient<IMemberRepository, MemberRepository>();
+//UnitOfWork
+builder.Services.AddScoped<IUnitOfWorks, UnitOfWork>();
+builder.Services.AddScoped<IMemberLogic, MemberLogic>();
 
 //6.appSettings "FunConfig" section -> _Fun.Config
 var config = new ConfigDto();

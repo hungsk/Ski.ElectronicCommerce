@@ -10,11 +10,21 @@ using Newtonsoft.Json.Linq;
 using System.Globalization;
 using System.Web;
 using System.Dynamic;
+using Ski.Member.Domain.Interfaces;
+using Ski.Member.Domain.Entities;
 
 namespace Ski.Member.Business.MemberLogics
 {
-    public class MemberLogic
+    public class MemberLogic : IMemberLogic
     {
+        private readonly IUnitOfWorks _unitOfWork;
+
+        public MemberLogic(IUnitOfWorks unitOfWork)
+        {
+            _unitOfWork = unitOfWork;
+        }
+
+
         #region 通用工具列
         public CommonLogic commonHelper = new CommonLogic();
         private string sql = string.Empty;
@@ -570,7 +580,7 @@ namespace Ski.Member.Business.MemberLogics
                     {
                         Subject = "新光產險網站會員註冊成功通知",
                         ToUsers = new() { request.Email.Trim() },
-                        Body = $"親愛的 { request.Name.Trim()} 先生/小姐 您好：<br>感謝您成為新光產險網站會員。請您妥善保存您的帳號資料，會員資料如有異動，請透過 <a href='{ "Url.Request.RequestUri.Scheme"}://{ "xxxxxxxxxxxxxxxxxxxxx"}/Member/'>會員專區 </a>『會員資料查詢/修改』更新您的資料，確保您資料的正確。<br>帳號：{maskUid.ToUpper()}<br>行動電話：{maskMobile}<br>信箱：{maskEmail}<br><font color=red>※本信件為系統直接發送，請勿直接回覆</font><br><br>{ GetPubEmailContent()}"
+                        Body = $"親愛的 {request.Name.Trim()} 先生/小姐 您好：<br>感謝您成為新光產險網站會員。請您妥善保存您的帳號資料，會員資料如有異動，請透過 <a href='{"Url.Request.RequestUri.Scheme"}://{"xxxxxxxxxxxxxxxxxxxxx"}/Member/'>會員專區 </a>『會員資料查詢/修改』更新您的資料，確保您資料的正確。<br>帳號：{maskUid.ToUpper()}<br>行動電話：{maskMobile}<br>信箱：{maskEmail}<br><font color=red>※本信件為系統直接發送，請勿直接回覆</font><br><br>{GetPubEmailContent()}"
                     };
                     await _Email.SendByDtoAsync(email);
 
@@ -793,5 +803,171 @@ namespace Ski.Member.Business.MemberLogics
 
         }
 
+        // 重構---------------------------------------------------------------
+        public EditResponse Create(MemberRequest request)
+        {
+            var req = request.data;
+            var result = new EditResponse();
+            //List<RuleResultTree> resultList = new ProductLogicRule().CreateInspect(req);
+            //var failList = resultList.Where(i => i.IsSuccess == false);
+            //if (failList.Count() > 0)
+            //{
+            //    result.success = false;
+            //    foreach (var item in failList)
+            //    {
+            //        result.message += String.Format("{0} ", item.ExceptionMessage);
+            //    }
+            //}
+            //else
+            //{
+            _unitOfWork.MemberRepository.Create(GetMemberEntity(req));
+
+            //var key = _Redis.RedisTypeEstr.BaoList + "ProductAll";
+            //_Redis.DeleteKeyAsync(key);
+
+            result.success = true;
+            result.message = "已建立成功";
+            //}
+
+            return result;
+        }
+
+        private MemberModel GetMemberEntity(MemberDTO req)
+        {
+            var memberEntity = new MemberModel()
+            {
+                me_name = req.Name,
+                me_id = req.Uid,
+                me_pid = req.Uid.ToUpper(),
+                me_pw = req.Password,
+                me_birth = Convert.ToDateTime(req.Birthday),
+                me_mobile = req.Mobile,
+                me_email = req.Email,
+                me_add1_post = req.PostalCode,
+                me_add1_city = req.City,
+                me_add1_area = req.Area,
+                me_add1 = req.Address,
+                me_add2_post = req.PostalCode,
+                me_add2_city = req.City,
+                me_add2_area = req.Area,
+                me_add2 = req.Address,
+                adddate = DateTime.Now,
+                otpchk = "N",
+                m_RegType = "W",
+                bChangePw = "N",
+                iCreate = "B2C",
+                RememberEmail = req.RememberEmail,
+                iChangeMobile = "0",
+                me_national = "",
+                me_marital = "",
+                me_gender = "",
+                me_tel = "",
+                LstLoginTime = DateTime.Now,
+                appLoginTime = DateTime.Now,
+                me_nameE = commonHelper.DESEncrypt(req.Name.Trim()),
+                me_pwE = commonHelper.Base64StringProcess(Base64Encrypt.Encode, req.Password.Trim()),
+                sQply = "N"
+            };
+
+            return memberEntity;
+        }
+
+        public void Dispose()
+        {
+            _unitOfWork.SaveChanges();//Saves all unsaved result before disposing
+            _unitOfWork.Dispose();
+        }
+
+        public EditResponse Update(MemberRequest request, string id)
+        {
+            var req = request.data;
+            var memberEntity = _unitOfWork.MemberRepository.Get(filter: item => item.me_id == id).FirstOrDefault();
+
+            memberEntity.me_birth = Convert.ToDateTime(req.Birthday);
+            memberEntity.me_mobile = req.Mobile;
+            memberEntity.me_email = req.Email;
+            memberEntity.me_add1_post = req.PostalCode;
+            memberEntity.me_add1_city = req.City;
+            memberEntity.me_add1_area = req.Area;
+            memberEntity.me_add1 = req.Address;
+            memberEntity.me_add2_post = req.PostalCode;
+            memberEntity.me_add2_city = req.City;
+            memberEntity.me_add2_area = req.Area;
+            memberEntity.me_add2 = req.Address;
+
+            _unitOfWork.MemberRepository.Update(memberEntity);
+
+            //var key = _Redis.RedisTypeEstr.BaoList + "ProductAll";
+            //_Redis.DeleteKeyAsync(key);
+
+            var result = new EditResponse();
+            result.success = true;
+            result.message = "更新成功";
+
+            return result;
+        }
+
+        public EditResponse Delete(string id)
+        {
+            var memberEntity = _unitOfWork.MemberRepository.Get(item => item.me_id == id).FirstOrDefault();
+            _unitOfWork.MemberRepository.Delete(memberEntity);
+
+            var result = new EditResponse();
+            if (memberEntity == null)
+            {
+                result.success = false;
+                result.message = "查無此會員";
+            }
+            else
+            {
+                //var key = _Redis.RedisTypeEstr.BaoList + "ProductAll";
+                //_Redis.DeleteKeyAsync(key);
+
+                result.success = true;
+                result.message = "刪除成功";
+            }
+            return result;
+        }
+
+        public MemberResponse Get(string id)
+        {
+            var memberEntity = _unitOfWork.MemberRepository.Get(filter: item => item.me_id == id).FirstOrDefault();
+
+            var result = new MemberResponse();
+            if (memberEntity == null)
+            {
+                result.success = false;
+                result.member = null;
+            }
+            else
+            {
+                result.success = true;
+                result.member = Mapper(memberEntity);
+            }
+
+            return result;
+        }
+
+        public static MemberDTO Mapper(MemberModel x)
+        {
+            var result = new MemberDTO()
+            {
+                Uid = x.me_id,
+                Password = x.me_pw,
+                Name =  x.me_name,
+                Birthday = x.me_birth.ToString(),
+                Mobile = x.me_mobile,
+                PostalCode = x.me_add2_post,
+                City = x.me_add2_city,
+                Area = x.me_add2_area,
+                Address = x.me_add2,
+                Email = x.me_email,
+                OTPCheck = x.otpchk,
+                Qply = x.sQply,
+                RememberEmail = x.RememberEmail
+            };
+
+            return result;
+        }
     }
 }

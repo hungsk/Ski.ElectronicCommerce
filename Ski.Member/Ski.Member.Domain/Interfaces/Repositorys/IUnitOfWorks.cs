@@ -1,8 +1,10 @@
-﻿namespace Ski.Member.Domain
+﻿using Ski.Member.Domain.Entities;
+
+namespace Ski.Member.Domain.Interfaces
 {
     public interface IUnitOfWorks : IDisposable
     {
-        IGenericRepository<Member> MemberRepository { get; }
+        IGenericRepository<MemberModel> MemberRepository { get; }
 
         void SaveChanges();
     }
