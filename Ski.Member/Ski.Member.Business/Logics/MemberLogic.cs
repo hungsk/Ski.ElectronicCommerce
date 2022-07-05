@@ -1,7 +1,6 @@
 ﻿using Ski.Base.Util.Models;
 using Ski.Base.Util.Services;
 using Newtonsoft.Json;
-using Ski.Member.Business.CommonLogics;
 using Ski.Member.Domain.Enums;
 using Ski.Member.Domain.Entities.MemberModels;
 using System.Net;
@@ -12,6 +11,9 @@ using System.Web;
 using System.Dynamic;
 using Ski.Member.Domain.Interfaces;
 using Ski.Member.Domain.Entities;
+using RulesEngine.Models;
+using Ski.Member.Business.Logics;
+using Ski.Member.Business.Rules;
 
 namespace Ski.Member.Business.MemberLogics
 {
@@ -808,26 +810,27 @@ namespace Ski.Member.Business.MemberLogics
         {
             var req = request.data;
             var result = new EditResponse();
-            //List<RuleResultTree> resultList = new ProductLogicRule().CreateInspect(req);
-            //var failList = resultList.Where(i => i.IsSuccess == false);
-            //if (failList.Count() > 0)
-            //{
-            //    result.success = false;
-            //    foreach (var item in failList)
-            //    {
-            //        result.message += String.Format("{0} ", item.ExceptionMessage);
-            //    }
-            //}
-            //else
-            //{
-            _unitOfWork.MemberRepository.Create(GetMemberEntity(req));
+            
+            List<RuleResultTree> resultList = new MemberLogicRule().CreateInspect(req);
+            var failList = resultList.Where(i => i.IsSuccess == false);
+            if (failList.Count() > 0)
+            {
+                result.success = false;
+                foreach (var item in failList)
+                {
+                    result.message += String.Format("{0} ", item.ExceptionMessage);
+                }
+            }
+            else
+            {
+                _unitOfWork.MemberRepository.Create(GetMemberEntity(req));
 
             //var key = _Redis.RedisTypeEstr.BaoList + "ProductAll";
             //_Redis.DeleteKeyAsync(key);
 
             result.success = true;
             result.message = "已建立成功";
-            //}
+            }
 
             return result;
         }

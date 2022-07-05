@@ -4,7 +4,7 @@ using System.Security.Cryptography;
 using System.Text;
 using System.Text.RegularExpressions;
 
-namespace Ski.Member.Business.CommonLogics
+namespace Ski.Member.Business.Logics
 {
     public class CommonLogic
     {
@@ -149,7 +149,7 @@ namespace Ski.Member.Business.CommonLogics
                 }
 
                 mailStr[0] = mailStr[0].Substring(0, maskStart);
-                return String.Join(maskStr + "@", mailStr);
+                return string.Join(maskStr + "@", mailStr);
             }
             else
             {
@@ -162,7 +162,7 @@ namespace Ski.Member.Business.CommonLogics
                     soureceStr.Substring(0, maskStart),
                     soureceStr.Substring(maskStart + maskLength, soureceStr.Length - (maskStart + maskLength))
                 };
-                return String.Join(maskStr, retainStr);
+                return string.Join(maskStr, retainStr);
             }
         }
 
@@ -180,7 +180,7 @@ namespace Ski.Member.Business.CommonLogics
             MemoryStream ms = new MemoryStream();
             try
             {
-                byte[] inData = UnicodeEncoding.Unicode.GetBytes(sourceString);
+                byte[] inData = Encoding.Unicode.GetBytes(sourceString);
                 CryptoStream cs = new CryptoStream(ms, des.CreateEncryptor(btKey, btIV), CryptoStreamMode.Write);
                 try
                 {
@@ -235,7 +235,7 @@ namespace Ski.Member.Business.CommonLogics
                     {
                         cs.Close();
                     }
-                    return UnicodeEncoding.Unicode.GetString(ms.ToArray());
+                    return Encoding.Unicode.GetString(ms.ToArray());
                 }
                 catch
                 {
@@ -264,14 +264,14 @@ namespace Ski.Member.Business.CommonLogics
                 {
                     var a = new[] { 10, 11, 12, 13, 14, 15, 16, 17, 34, 18, 19, 20, 21, 22, 35, 23, 24, 25, 26, 27, 28, 29, 32, 30, 31, 33 };
                     var b = new int[11];
-                    b[1] = a[(identify[0]) - 65] % 10;
-                    var c = b[0] = a[(identify[0]) - 65] / 10;
+                    b[1] = a[identify[0] - 65] % 10;
+                    var c = b[0] = a[identify[0] - 65] / 10;
                     for (var i = 1; i <= 9; i++)
                     {
                         b[i + 1] = identify[i] - 48;
                         c += b[i] * (10 - i);
                     }
-                    if (((c % 10) + b[10]) % 10 == 0)
+                    if ((c % 10 + b[10]) % 10 == 0)
                     {
                         res = "";
                     }
