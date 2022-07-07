@@ -1,56 +1,61 @@
-[
-  {
-    "WorkflowName": "MemberCreate",
-    "Rules": [
-      {
-        "RuleName": "CheckUid",
-        "ErrorMessage": "Uid為必輸",
-        "ErrorType": "Error",
-        "RuleExpressionType": "LambdaExpression",
-        "Expression": "!string.IsNullOrWhiteSpace(Uid)"
-      },
-      {
-        "RuleName": "CheckName",
-        "ErrorMessage": "Name為必輸",
-        "ErrorType": "Error",
-        "RuleExpressionType": "LambdaExpression",
-        "Expression": "!string.IsNullOrWhiteSpace(Name)"
-      },
-      {
-        "RuleName": "CheckBirthday",
-        "ErrorMessage": "Birthday為必輸",
-        "ErrorType": "Error",
-        "RuleExpressionType": "LambdaExpression",
-        "Expression": "!string.IsNullOrWhiteSpace(Birthday)"
-      },
-      {
-        "RuleName": "CheckMobile",
-        "ErrorMessage": "Mobile為必輸",
-        "ErrorType": "Error",
-        "RuleExpressionType": "LambdaExpression",
-        "Expression": "!string.IsNullOrWhiteSpace(Mobile)"
-      },
-      {
-        "RuleName": "CheckPostalCode",
-        "ErrorMessage": "PostalCode為必輸",
-        "ErrorType": "Error",
-        "RuleExpressionType": "LambdaExpression",
-        "Expression": "!string.IsNullOrWhiteSpace(PostalCode)"
-      },
-      {
-        "RuleName": "CheckAddress",
-        "ErrorMessage": "Address為必輸",
-        "ErrorType": "Error",
-        "RuleExpressionType": "LambdaExpression",
-        "Expression": "!string.IsNullOrWhiteSpace(Address)"
-      },
-      {
-        "RuleName": "CheckEmail",
-        "ErrorMessage": "Email為必輸",
-        "ErrorType": "Error",
-        "RuleExpressionType": "LambdaExpression",
-        "Expression": "!string.IsNullOrWhiteSpace(Email)"
-      }
-    ]
-  }
-]
+{
+  "WorkflowName": "inputWorkflow",
+  "Rules": [
+    {
+      "RuleName": "CheckUid",
+      "ErrorMessage": "身份證字號錯誤",
+      "ErrorType": "Error",
+      "RuleExpressionType": "LambdaExpression",
+      "Expression": "utils.CheckIDNumber(String(datas.Uid)) == true"
+    },
+    {
+      "RuleName": "RequireUid",
+      "ErrorMessage": "Uid為必輸",
+      "ErrorType": "Error",
+      "RuleExpressionType": "LambdaExpression",
+      "Expression": "string.IsNullOrWhiteSpace(String(datas.Uid)) == false"
+    },
+    {
+      "RuleName": "RequireName",
+      "ErrorMessage": "Name為必輸",
+      "ErrorType": "Error",
+      "RuleExpressionType": "LambdaExpression",
+      "Expression": "string.IsNullOrWhiteSpace(String(datas.Name)) == false"
+    },
+    {
+      "RuleName": "RequireBirthday",
+      "ErrorMessage": "Birthday為必輸",
+      "ErrorType": "Error",
+      "RuleExpressionType": "LambdaExpression",
+      "Expression": "string.IsNullOrWhiteSpace(String(datas.Birthday)) == false"
+    },
+    {
+      "RuleName": "RequireMobile",
+      "ErrorMessage": "Mobile為必輸",
+      "ErrorType": "Error",
+      "RuleExpressionType": "LambdaExpression",
+      "Expression": "string.IsNullOrWhiteSpace(String(datas.Mobile)) == false"
+    },
+    {
+      "RuleName": "RequirePostalCode",
+      "ErrorMessage": "PostalCode為必輸",
+      "ErrorType": "Error",
+      "RuleExpressionType": "LambdaExpression",
+      "Expression": "string.IsNullOrWhiteSpace(String(datas.PostalCode)) == false"
+    },
+    {
+      "RuleName": "RequireAddress",
+      "ErrorMessage": "Address為必輸",
+      "ErrorType": "Error",
+      "RuleExpressionType": "LambdaExpression",
+      "Expression": "string.IsNullOrWhiteSpace(String(datas.Address)) == false"
+    },
+    {
+      "RuleName": "RequireEmail",
+      "ErrorMessage": "Email為必輸",
+      "ErrorType": "Error",
+      "RuleExpressionType": "LambdaExpression",
+      "Expression": "string.IsNullOrWhiteSpace(String(datas.Email)) == false"
+    }
+  ]
+}

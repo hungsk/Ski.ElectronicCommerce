@@ -810,7 +810,9 @@ namespace Ski.Member.Business.MemberLogics
         {
             var req = request.data;
             var result = new EditResponse();
-            
+
+            var memberobj = Get(req.Uid);
+
             List<RuleResultTree> resultList = new MemberLogicRule().CreateInspect(req);
             var failList = resultList.Where(i => i.IsSuccess == false);
             if (failList.Count() > 0)
@@ -823,13 +825,21 @@ namespace Ski.Member.Business.MemberLogics
             }
             else
             {
-                _unitOfWork.MemberRepository.Create(GetMemberEntity(req));
+                if (Get(req.Uid) == null)
+                {
+                    _unitOfWork.MemberRepository.Create(GetMemberEntity(req));
 
-            //var key = _Redis.RedisTypeEstr.BaoList + "ProductAll";
-            //_Redis.DeleteKeyAsync(key);
+                    //var key = _Redis.RedisTypeEstr.BaoList + "ProductAll";
+                    //_Redis.DeleteKeyAsync(key);
 
-            result.success = true;
-            result.message = "已建立成功";
+                    result.success = true;
+                    result.message = "已建立成功";
+                }
+                else
+                {
+
+                }
+
             }
 
             return result;
