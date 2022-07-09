@@ -26,7 +26,6 @@ namespace Ski.Member.Business.MemberLogics
             _unitOfWork = unitOfWork;
         }
 
-
         #region 通用工具列
         public CommonLogic commonHelper = new CommonLogic();
         private string sql = string.Empty;
@@ -811,9 +810,7 @@ namespace Ski.Member.Business.MemberLogics
             var req = request.data;
             var result = new EditResponse();
 
-            var memberobj = Get(req.Uid);
-
-            List<RuleResultTree> resultList = new MemberLogicRule().CreateInspect(req);
+            List<RuleResultTree> resultList = new MemberLogicRule().CreateInspect(req, this);
             var failList = resultList.Where(i => i.IsSuccess == false);
             if (failList.Count() > 0)
             {
@@ -823,23 +820,20 @@ namespace Ski.Member.Business.MemberLogics
                     result.message += String.Format("{0} ", item.ExceptionMessage);
                 }
             }
+            else if(Get(req.Uid) == null)
+            {
+                _unitOfWork.MemberRepository.Create(GetMemberEntity(req));
+
+                //var key = _Redis.RedisTypeEstr.BaoList + "ProductAll";
+                //_Redis.DeleteKeyAsync(key);
+
+                result.success = true;
+                result.message = "已建立成功";
+            }
             else
             {
-                if (Get(req.Uid) == null)
-                {
-                    _unitOfWork.MemberRepository.Create(GetMemberEntity(req));
-
-                    //var key = _Redis.RedisTypeEstr.BaoList + "ProductAll";
-                    //_Redis.DeleteKeyAsync(key);
-
-                    result.success = true;
-                    result.message = "已建立成功";
-                }
-                else
-                {
-
-                }
-
+                result.success = false;
+                result.message = "帳號已註冊";
             }
 
             return result;
@@ -961,13 +955,15 @@ namespace Ski.Member.Business.MemberLogics
             return result;
         }
 
+
+
         public static MemberDTO Mapper(MemberModel x)
         {
             var result = new MemberDTO()
             {
                 Uid = x.me_id,
                 Password = x.me_pw,
-                Name =  x.me_name,
+                Name = x.me_name,
                 Birthday = x.me_birth.ToString(),
                 Mobile = x.me_mobile,
                 PostalCode = x.me_add2_post,
@@ -981,6 +977,37 @@ namespace Ski.Member.Business.MemberLogics
             };
 
             return result;
+        }
+
+        public bool CheckIDNumber(string id)
+        {
+            var result = false;
+            if (id.Length == 10)
+            {
+                id = id.ToUpper();
+                if (id[0] >= 0x41 && id[0] <= 0x5A)
+                {
+                    var a = new[] { 10, 11, 12, 13, 14, 15, 16, 17, 34, 18, 19, 20, 21, 22, 35, 23, 24, 25, 26, 27, 28, 29, 32, 30, 31, 33 };
+                    var b = new int[11];
+                    b[1] = a[id[0] - 65] % 10;
+                    var c = b[0] = a[id[0] - 65] / 10;
+                    for (var i = 1; i <= 9; i++)
+                    {
+                        b[i + 1] = id[i] - 48;
+                        c += b[i] * (10 - i);
+                    }
+                    if ((c % 10 + b[10]) % 10 == 0)
+                    {
+                        result = true;
+                    }
+                }
+            }
+            return result;
+        }
+
+        public int MobileCountQry(string mobile)
+        {
+            return _unitOfWork.MemberRepository.Get(filter: item => item.me_mobile == mobile).Count();
         }
     }
 }
