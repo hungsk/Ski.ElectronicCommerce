@@ -14,6 +14,7 @@ using Ski.Member.Domain.Entities;
 using RulesEngine.Models;
 using Ski.Member.Business.Logics;
 using Ski.Member.Business.Rules;
+using Ski.Member.Business.Interfaces;
 
 namespace Ski.Member.Business.MemberLogics
 {
@@ -820,7 +821,7 @@ namespace Ski.Member.Business.MemberLogics
                     result.message += String.Format("{0} ", item.ExceptionMessage);
                 }
             }
-            else if(Get(req.Uid) == null)
+            else
             {
                 _unitOfWork.MemberRepository.Create(GetMemberEntity(req));
 
@@ -830,11 +831,21 @@ namespace Ski.Member.Business.MemberLogics
                 result.success = true;
                 result.message = "已建立成功";
             }
-            else
-            {
-                result.success = false;
-                result.message = "帳號已註冊";
-            }
+            //else if(Get(req.Uid) == null)
+            //{
+            //    _unitOfWork.MemberRepository.Create(GetMemberEntity(req));
+
+            //    //var key = _Redis.RedisTypeEstr.BaoList + "ProductAll";
+            //    //_Redis.DeleteKeyAsync(key);
+
+            //    result.success = true;
+            //    result.message = "已建立成功";
+            //}
+            //else
+            //{
+            //    result.success = false;
+            //    result.message = "帳號已註冊";
+            //}
 
             return result;
         }
@@ -955,8 +966,6 @@ namespace Ski.Member.Business.MemberLogics
             return result;
         }
 
-
-
         public static MemberDTO Mapper(MemberModel x)
         {
             var result = new MemberDTO()
@@ -979,35 +988,14 @@ namespace Ski.Member.Business.MemberLogics
             return result;
         }
 
-        public bool CheckIDNumber(string id)
-        {
-            var result = false;
-            if (id.Length == 10)
-            {
-                id = id.ToUpper();
-                if (id[0] >= 0x41 && id[0] <= 0x5A)
-                {
-                    var a = new[] { 10, 11, 12, 13, 14, 15, 16, 17, 34, 18, 19, 20, 21, 22, 35, 23, 24, 25, 26, 27, 28, 29, 32, 30, 31, 33 };
-                    var b = new int[11];
-                    b[1] = a[id[0] - 65] % 10;
-                    var c = b[0] = a[id[0] - 65] / 10;
-                    for (var i = 1; i <= 9; i++)
-                    {
-                        b[i + 1] = id[i] - 48;
-                        c += b[i] * (10 - i);
-                    }
-                    if ((c % 10 + b[10]) % 10 == 0)
-                    {
-                        result = true;
-                    }
-                }
-            }
-            return result;
-        }
-
-        public int MobileCountQry(string mobile)
+        public int GetMobileCount(string mobile)
         {
             return _unitOfWork.MemberRepository.Get(filter: item => item.me_mobile == mobile).Count();
+        }
+
+        public bool IsExists(string id)
+        {
+            return _unitOfWork.MemberRepository.Get(filter: item => item.me_id == id).Count() == 0 ? false : true;
         }
     }
 }

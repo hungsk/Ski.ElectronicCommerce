@@ -37,7 +37,7 @@ builder.Services.AddDbContext<ShinkongDbContext>(option =>
 
 //UnitOfWork
 builder.Services.AddScoped<IUnitOfWorks, UnitOfWork>();
-builder.Services.AddScoped<IMemberLogic, MemberLogic>();
+builder.Services.AddScoped<Ski.Member.Business.Interfaces.IMemberLogic, MemberLogic>();
 
 //6.appSettings "FunConfig" section -> _Fun.Config
 var config = new ConfigDto();

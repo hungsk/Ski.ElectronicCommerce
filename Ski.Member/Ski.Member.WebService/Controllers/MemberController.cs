@@ -8,7 +8,7 @@ using Microsoft.IdentityModel.Tokens;
 using Ski.Member.Data;
 using Ski.Member.Business.MemberLogics;
 using Ski.Member.Domain.Entities;
-using Ski.Member.Domain.Interfaces;
+using Ski.Member.Business.Interfaces;
 
 namespace Ski.Member.WebService.Controllers
 {

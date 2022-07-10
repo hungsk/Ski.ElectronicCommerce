@@ -1,6 +1,6 @@
 ﻿using Ski.Member.Domain.Entities;
 
-namespace Ski.Member.Domain.Interfaces
+namespace Ski.Member.Business.Interfaces
 {
     public interface IMemberLogic
     {
@@ -12,6 +12,9 @@ namespace Ski.Member.Domain.Interfaces
 
         MemberResponse Get(string id);
 
+        bool IsExists(string id);
+
+        int GetMobileCount(string mobile);
         //ProductAllResponse GetList();
 
         //ProductListResponse GetList(int page);

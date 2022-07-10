@@ -14,7 +14,7 @@ namespace Ski.Member.Business.Rules
 {
     public class MemberLogicRule
     {
-        public List<RuleResultTree> CreateInspect(MemberDTO req , MemberLogic utils)
+        public List<RuleResultTree> CreateInspect(MemberDTO req , MemberLogic logic)
         {
             var re = GetRulesEngine("Member.json");
 
@@ -28,8 +28,8 @@ namespace Ski.Member.Business.Rules
             datas.Address = req.Address;
             datas.Email = req.Email;
 
-            //var utils = new Logics.Utils();
-            var result = re.ExecuteAllRulesAsync("inputWorkflow", new RuleParameter("datas", datas), new RuleParameter("utils", utils)).Result;
+            var utils = new Logics.Utils();
+            var result = re.ExecuteAllRulesAsync("inputWorkflow", new RuleParameter("datas", datas), new RuleParameter("logic", logic), new RuleParameter("utils", utils)).Result;
 
             return result;
         }
@@ -45,5 +45,6 @@ namespace Ski.Member.Business.Rules
             var filePath = Path.Combine(Directory.GetCurrentDirectory() as string, "Workflows", filename);
             return File.ReadAllText(filePath);
         }
+
     }
 }
