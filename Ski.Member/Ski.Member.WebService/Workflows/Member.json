@@ -20,7 +20,7 @@
       "ErrorMessage": "行動電話已被註冊5次",
       "ErrorType": "Error",
       "RuleExpressionType": "LambdaExpression",
-      "Expression": "logic.GetMobileCount(String(datas.mobile)) >= 5"
+      "Expression": "logic.GetMobileCount(String(datas.mobile)) <= 5"
     },
     {
       "RuleName": "RequireUid",
