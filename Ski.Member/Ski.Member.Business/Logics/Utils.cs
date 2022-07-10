@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using Newtonsoft.Json;
 using Ski.Base.Util.Services;
 using Ski.Member.Domain.Entities;
-using Ski.Member.Domain.Interfaces;
+using Ski.Member.Data.Interfaces;
 
 namespace Ski.Member.Business.Logics
 {

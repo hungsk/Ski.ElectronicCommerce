@@ -1,5 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using Ski.Member.Domain;
+using Ski.Member.Data.Interfaces;
 using System.Linq.Expressions;
 
 namespace Ski.Member.Data

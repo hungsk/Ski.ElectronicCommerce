@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using Ski.Member.Data.Interfaces;
 using Ski.Member.Domain.Entities;
 
 namespace Ski.Member.Data

@@ -1,6 +1,6 @@
 ﻿using Ski.Member.Domain;
 using Ski.Member.Domain.Entities;
-using Ski.Member.Domain.Interfaces;
+using Ski.Member.Data.Interfaces;
 
 namespace Ski.Member.Data
 {

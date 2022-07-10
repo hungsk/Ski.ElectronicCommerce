@@ -9,7 +9,7 @@ using Newtonsoft.Json.Linq;
 using System.Globalization;
 using System.Web;
 using System.Dynamic;
-using Ski.Member.Domain.Interfaces;
+using Ski.Member.Data.Interfaces;
 using Ski.Member.Domain.Entities;
 using RulesEngine.Models;
 using Ski.Member.Business.Logics;

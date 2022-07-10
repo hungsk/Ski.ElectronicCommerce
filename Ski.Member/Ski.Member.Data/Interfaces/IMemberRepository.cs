@@ -1,6 +1,6 @@
 ﻿using Ski.Member.Domain.Entities;
 
-namespace Ski.Member.Data
+namespace Ski.Member.Data.Interfaces
 {
     public interface IMemberRepository
     {

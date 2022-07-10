@@ -7,7 +7,7 @@ using Microsoft.IdentityModel.Tokens;
 using Ski.Member.Data;
 using System.Data.Common;
 using System.Data.SqlClient;
-using Ski.Member.Domain.Interfaces;
+using Ski.Member.Data.Interfaces;
 using Ski.Member.Business.MemberLogics;
 
 var builder = WebApplication.CreateBuilder(args);

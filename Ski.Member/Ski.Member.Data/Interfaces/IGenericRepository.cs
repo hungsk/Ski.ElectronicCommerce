@@ -1,6 +1,6 @@
 ﻿using System.Linq.Expressions;
 
-namespace Ski.Member.Domain
+namespace Ski.Member.Data.Interfaces
 {
     public interface IGenericRepository<TEntity>
         where TEntity : class
