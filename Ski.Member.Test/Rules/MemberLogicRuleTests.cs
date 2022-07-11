@@ -1,8 +1,11 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 using RulesEngine.Models;
 using Ski.Member.Business.Rules;
+using Ski.Member.Data;
+using Ski.Member.Domain.Entities;
 using System;
 using System.Collections.Generic;
 using System.Dynamic;
@@ -15,6 +18,35 @@ namespace Ski.Member.Business.Rules.Tests
     [TestClass()]
     public class MemberLogicRuleTests
     {
+
+        ShinkongDbContext GetDbContext()
+        {
+            var options = new DbContextOptionsBuilder<ShinkongDbContext>()
+                .UseInMemoryDatabase(databaseName: "Shinkong")
+                .Options;
+            return new ShinkongDbContext(options);
+        }
+
+        [TestMethod]
+        public void TestMethod2()
+        {
+            var dbContext = GetDbContext();
+            var datas = new MemberModel()
+            {
+                me_id = "test",
+                me_pw = "1234567890",
+                me_name = "test",
+                me_birth = DateTime.Now,
+                me_mobile = "1234567890",
+                me_add1_post = "test",
+                me_add1 = "test",
+                me_email = "test"
+            };
+            dbContext.Member.Add(datas);
+            dbContext.SaveChanges();
+            var rec = dbContext.Member.FirstOrDefault();
+            Assert.IsNotNull(rec);
+        }
 
         [TestMethod()]
         [DataRow("member.json")]
@@ -34,9 +66,12 @@ namespace Ski.Member.Business.Rules.Tests
 
             // Run previous rules.
             var utils = new Logics.Utils();
-            var logic = new Logics.Utils(); //new MemberLogics.MemberLogic();
-            var result = re.ExecuteAllRulesAsync("inputWorkflow", new RuleParameter("datas", datas), new RuleParameter("logic", logic), new RuleParameter("utils", utils)).Result;
 
+            var dbContext = GetDbContext();
+            var unitOfWork = new UnitOfWork(dbContext);
+            var logic = new MemberLogics.MemberLogic(unitOfWork);
+
+            var result = re.ExecuteAllRulesAsync("inputWorkflow", new RuleParameter("datas", datas), new RuleParameter("logic", logic), new RuleParameter("utils", utils)).Result;
 
             //List<RuleResultTree> result1 = re.ExecuteAllRulesAsync("inputWorkflow", input1);
             Assert.IsNotNull(result);
