@@ -29,7 +29,7 @@ namespace Ski.Member.Business.Rules
             datas.Email = req.Email;
 
             var utils = new Logics.Utils();
-            var result = re.ExecuteAllRulesAsync("inputWorkflow", new RuleParameter("datas", datas), new RuleParameter("logic", logic), new RuleParameter("utils", utils)).Result;
+            var result = re.ExecuteAllRulesAsync("InputWorkflow", new RuleParameter("datas", datas), new RuleParameter("logic", logic), new RuleParameter("utils", utils)).Result;
 
             return result;
         }

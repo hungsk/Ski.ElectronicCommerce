@@ -1,5 +1,5 @@
 {
-  "WorkflowName": "inputWorkflow",
+  "WorkflowName": "InputWorkflow",
   "Rules": [
     {
       "RuleName": "CheckIsExists",
