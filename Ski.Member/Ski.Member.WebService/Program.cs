@@ -29,8 +29,8 @@ builder.Services.AddTransient<DbCommand, SqlCommand>();
 //EF Core
 builder.Services.AddDbContext<ShinkongDbContext>(option =>
 {
-    //option.UseSqlServer("data source=172.20.103.78;user id=shinkong;password=shinkong5678;database=shinkong");
-    option.UseSqlite("Data Source=../ski.member.data/Sqlite/Shinkong.db");
+    //option.UseSqlServer(builder.Configuration["FunConfig:Db"]);
+    option.UseSqlite(builder.Configuration["FunConfig:DbSqlite"]);
     option.EnableSensitiveDataLogging();
     option.LogTo(Console.WriteLine);
 });
