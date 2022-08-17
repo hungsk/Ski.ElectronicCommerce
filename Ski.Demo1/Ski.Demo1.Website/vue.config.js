@@ -1,3 +1,6 @@
 module.exports = {
-    publicPath: '/SkiDemo/'
+    publicPath: '/SkiDemo/',
+    configureWebpack: {
+        devtool: 'source-map'
+    }
 }
